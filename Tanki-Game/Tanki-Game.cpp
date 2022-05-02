@@ -1,24 +1,36 @@
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
-int main()
+
+int main(int argc, char* argv[])
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+	Game game;
+	
+	game.run();
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
-
-    return 0;
+	return 0;
 }
+
+//int main(int argc, char* argv[])
+//{
+//    // TODO: handle startup options
+//
+//    sf::RenderWindow window(sf::VideoMode(1280, 720), "Tanki!", sf::Style::Titlebar | sf::Style::Close);
+//    
+//    sf::CircleShape shape(100.f);
+//    shape.setFillColor(sf::Color::Yellow);
+//
+//    while (window.isOpen())
+//    {
+//        
+//
+//        window.clear();
+//        
+//        window.draw(shape);
+//        // TODO: Game
+//        
+//        window.display();
+//    }
+//
+//    return 0;
+//}
