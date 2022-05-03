@@ -6,8 +6,6 @@
 #include "Tanki-Game.h"
 
 
-
-
 // TODO: Singletone
 class Game
 {
