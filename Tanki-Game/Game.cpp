@@ -3,6 +3,7 @@
 Game::Game()
 {
 	this->initMainWindow();
+	this->initLogger();
 }
 
 Game::~Game()
@@ -20,6 +21,7 @@ void Game::run()
 	}
 }
 
+/* Initializers */
 void Game::initMainWindow()
 {
 	if (this->main_window)
@@ -28,9 +30,17 @@ void Game::initMainWindow()
 	this->main_window = new sf::RenderWindow(sf::VideoMode(1280, 720), GAME_TITLE, sf::Style::Titlebar | sf::Style::Close);
 }
 
+void Game::initLogger()
+{
+	// TODO: Initialize logger
+	plog::init(plog::debug, "logs/test.log");
+}
+/* ============ */
+
+/* Update */
 void Game::update()
 {
-	std::cout << 1/this->deltaTime<<std::endl;
+	PLOG_INFO << "FPS: " << 1 / this->deltaTime;
 }
 
 void Game::render()
@@ -59,3 +69,4 @@ void Game::updateDt()
 {
 	this->deltaTime = this->dtClock.restart().asSeconds();
 }
+/* ====== */

@@ -1,9 +1,11 @@
 #pragma once
-#include<iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "Tanki-Game.h"
+#include <plog/Log.h>
+#include "plog/Initializers/RollingFileInitializer.h"
+
+#include "Tanki-Game.hh"
 
 
 // TODO: Singletone
@@ -28,7 +30,7 @@ private:
     
     /* Initialization */
     void initMainWindow();
-    
+    void initLogger();
     /* ============== */
 
     /* Update */
