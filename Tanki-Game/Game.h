@@ -6,12 +6,16 @@
 #include "Tanki-Game.h"
 
 
+
+
 // TODO: Singletone
 class Game
 {
 public:
     Game();
     ~Game();
+
+    
 
     void run();
 private:
@@ -33,5 +37,6 @@ private:
     void update();
     void render();
     void updateEvents();
+    void updateDt();
     /* ====== */
 };

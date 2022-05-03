@@ -14,6 +14,7 @@ void Game::run()
 {
 	while (this->main_window->isOpen()) {
 		this->updateEvents();
+		this->updateDt();
 		this->update();
 		this->render();
 	}
@@ -29,7 +30,7 @@ void Game::initMainWindow()
 
 void Game::update()
 {
-	this->deltaTime = this->dtClock.restart().asSeconds();
+	std::cout << 1/this->deltaTime<<std::endl;
 }
 
 void Game::render()
@@ -52,4 +53,9 @@ void Game::updateEvents()
 			break;
 		}
 	}
+}
+
+void Game::updateDt()
+{
+	this->deltaTime = this->dtClock.restart().asSeconds();
 }
