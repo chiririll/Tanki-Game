@@ -3,6 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+#include "Tanki-Game.h"
+
+
+// TODO: Singletone
 class Game
 {
 public:
@@ -11,14 +15,23 @@ public:
 
     void run();
 private:
+    /*  Variables */
     sf::RenderWindow* main_window;
-    sf::Clock timer;
-
-    sf::Time deltaTime;
-
-    void initWindow();
     
+    sf::Event event;
+
+    sf::Clock dtClock;
+    float deltaTime;
+    /* ========== */
+    
+    /* Initialization */
+    void initMainWindow();
+    
+    /* ============== */
+
+    /* Update */
     void update();
     void render();
-
+    void updateEvents();
+    /* ====== */
 };
