@@ -7,12 +7,12 @@ Game::Game()
 
 Game::~Game()
 {
-	delete this->window;
+	delete this->main_window;
 }
 
 void Game::run()
 {
-	while (this->window->isOpen()) {
+	while (this->main_window->isOpen()) {
 		this->update();
 		this->render();
 	}
@@ -20,21 +20,24 @@ void Game::run()
 
 void Game::initWindow()
 {
-	if (this->window)
+	if (this->main_window)
 		return;
 
-	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Tanki!", sf::Style::Titlebar | sf::Style::Close);
+	this->main_window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Tanki!", sf::Style::Titlebar | sf::Style::Close);
 }
 
 void Game::update()
 {
+	this->deltaTime = timer.getElapsedTime();
+	timer.restart();
+
 	sf::Event event;
-	while (this->window->pollEvent(event))
+	while (this->main_window->pollEvent(event))
 	{
 		switch (event.type)
 		{
 		case sf::Event::Closed:
-			this->window->close();
+			this->main_window->close();
 			break;
 		}
 	}
@@ -42,9 +45,9 @@ void Game::update()
 
 void Game::render()
 {
-	this->window->clear();
+	this->main_window->clear();
 
 	// Render some stuff
 
-	this->window->display();
+	this->main_window->display();
 }

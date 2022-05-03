@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
@@ -10,9 +11,13 @@ public:
 
     void run();
 private:
-    sf::RenderWindow* window;
+    sf::RenderWindow* main_window;
+    sf::Clock timer;
+
+    sf::Time deltaTime;
 
     void initWindow();
+    
     void update();
     void render();
 
