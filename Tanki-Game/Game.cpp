@@ -33,7 +33,9 @@ void Game::initMainWindow()
 void Game::initLogger()
 {
 	// TODO: Initialize logger
-	plog::init(plog::debug, "logs/test.log");
+	// TODO: Create logs 
+	std::string filename = LOGS_FOLDER + "tanki.log";
+	plog::init(plog::debug, &filename[0]);
 }
 /* ============ */
 
@@ -54,9 +56,12 @@ void Game::render()
 
 void Game::updateEvents()
 {
-	while (this->main_window->pollEvent(this->event))
+	// TODO: EventListener pattern
+
+	sf::Event event;
+	while (this->main_window->pollEvent(event))
 	{
-		switch (this->event.type)
+		switch (event.type)
 		{
 		case sf::Event::Closed:
 			this->main_window->close();

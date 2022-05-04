@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
@@ -15,14 +17,11 @@ public:
     Game();
     ~Game();
 
-    
-
     void run();
+
 private:
     /*  Variables */
     sf::RenderWindow* main_window;
-    
-    sf::Event event;
 
     sf::Clock dtClock;
     float deltaTime;
@@ -34,9 +33,9 @@ private:
     /* ============== */
 
     /* Update */
-    void update();
-    void render();
     void updateEvents();
     void updateDt();
+    void update();
+    void render();
     /* ====== */
 };
