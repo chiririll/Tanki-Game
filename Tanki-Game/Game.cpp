@@ -32,10 +32,18 @@ void Game::initMainWindow()
 
 void Game::initLogger()
 {
-	// TODO: Initialize logger
-	// TODO: Create logs 
+	// TODO: Create logs folder
+	
+	// Log file path
 	std::string filename = LOGS_FOLDER + "tanki.log";
-	plog::init(plog::debug, &filename[0]);
+
+	// Adding file appender
+	static plog::RollingFileAppender<plog::TxtFormatter> fileAppender(&filename[0], LOGGER_FILE_SIZE, LOGGER_MAX_FILES);
+	// Adding console appender
+	static plog::ColorConsoleAppender<plog::TxtFormatter> consoleAppender;
+	
+	// Initializing logger
+	plog::init(plog::debug, &fileAppender).addAppender(&consoleAppender);
 }
 /* ============ */
 
