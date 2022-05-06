@@ -2,12 +2,13 @@
 
 Game::Game()
 {
-	this->initMainWindow();
 	this->initLogger();
+	this->initMainWindow();
 }
 
 Game::~Game()
 {
+	
 	delete this->main_window;
 }
 
@@ -24,10 +25,12 @@ void Game::run()
 /* Initializers */
 void Game::initMainWindow()
 {
+	PLOG_INFO << "Initializing main window";
 	if (this->main_window)
 		return;
 
 	this->main_window = new sf::RenderWindow(sf::VideoMode(1280, 720), GAME_TITLE, sf::Style::Titlebar | sf::Style::Close);
+	PLOG_INFO << "Main window created";
 }
 
 void Game::initLogger()
@@ -44,13 +47,15 @@ void Game::initLogger()
 	
 	// Initializing logger
 	plog::init(plog::debug, &fileAppender).addAppender(&consoleAppender);
+
+	PLOG_INFO << "Logger initialized";
 }
 /* ============ */
 
 /* Update */
 void Game::update()
 {
-	PLOG_INFO << "FPS: " << 1 / this->deltaTime;
+	// PLOG_INFO << "FPS: " << 1 / this->deltaTime;
 }
 
 void Game::render()
@@ -72,6 +77,7 @@ void Game::updateEvents()
 		switch (event.type)
 		{
 		case sf::Event::Closed:
+			PLOG_INFO << "Closing main window";
 			this->main_window->close();
 			break;
 		}
