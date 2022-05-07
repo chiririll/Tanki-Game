@@ -1,5 +1,19 @@
 #include "Game.h"
 
+/* Singletone stuff */
+Game* Game::pinstance_{ nullptr };
+
+Game* Game::GetInstance()
+{
+	if (pinstance_ == nullptr) {
+		pinstance_ = new Game();
+	}
+	return pinstance_;
+}
+/* ================ */
+
+
+/* Constructors & destructors */
 Game::Game()
 {
 	this->initLogger();
@@ -7,11 +21,13 @@ Game::Game()
 }
 
 Game::~Game()
-{
-	
+{	
 	delete this->main_window;
 }
+/* ========================== */
 
+
+/* Game Loop */
 void Game::run()
 {
 	while (this->main_window->isOpen()) {
@@ -21,6 +37,8 @@ void Game::run()
 		this->render();
 	}
 }
+/* ========= */
+
 
 /* Initializers */
 void Game::initMainWindow()
@@ -51,6 +69,7 @@ void Game::initLogger()
 	PLOG_INFO << "Logger initialized";
 }
 /* ============ */
+
 
 /* Update */
 void Game::update()

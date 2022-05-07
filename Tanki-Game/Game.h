@@ -11,23 +11,19 @@
 #include "Tanki-Game.hh"
 
 
-// TODO: Singletone
 class Game
 {
-public:
-    Game();
-    ~Game();
-
-    void run();
-
 private:
+    // Singletone 
+    static Game* pinstance_;
+
     /*  Variables */
     sf::RenderWindow* main_window;
 
     sf::Clock dtClock;
     float deltaTime;
     /* ========== */
-    
+
     /* Initialization */
     void initMainWindow();
     void initLogger();
@@ -39,4 +35,16 @@ private:
     void update();
     void render();
     /* ====== */
+
+protected:
+    Game();
+    ~Game();
+
+public:
+    void run();
+
+    // Singletone 
+    Game(Game& other) = delete;
+    void operator=(const Game&) = delete;
+    static Game* GetInstance();
 };
