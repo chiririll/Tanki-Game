@@ -72,21 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Objects\</IntDir>
+    <OutDir>$(SolutionDir)\GameFIles\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)\.obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Objects\</IntDir>
+    <OutDir>$(SolutionDir)\GameFIles\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)\.obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Objects\</IntDir>
+    <IntDir>$(SolutionDir)\.obj\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\GameFIles\$(Configuration)\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Objects\</IntDir>
+    <IntDir>$(SolutionDir)\.obj\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\GameFIles\$(Configuration)\$(Platform)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,13 +96,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\External\SFML-2.5.1\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\SDL2-2.0.22\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib32;$(SolutionDir)\External\SFML-2.5.1\lib32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib\x86;$(SolutionDir)\External\SDL2-2.0.22\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,15 +113,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\External\SFML-2.5.1\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\SDL2-2.0.22\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib32;$(SolutionDir)\External\SFML-2.5.1\lib32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib\x86;$(SolutionDir)\External\SDL2-2.0.22\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,13 +130,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\External\SFML-2.5.1\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\SDL2-2.0.22\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\External\SFML-2.5.1\lib64;$(SolutionDir)\External\squirrel-3\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2-2.0.22\lib\x64;$(SolutionDir)\External\squirrel-3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,15 +147,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\External\SFML-2.5.1\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\External\SDL2-2.0.22\include;$(SolutionDir)\External\plog-1.1.6\include;$(SolutionDir)\External\squirrel-3\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\External\SFML-2.5.1\lib64;$(SolutionDir)\External\squirrel-3\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2-2.0.22\lib\x64;$(SolutionDir)\External\squirrel-3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

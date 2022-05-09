@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
+#include <mutex>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
+#include <SDL.h>
 
 #include <plog/Log.h>
 #include "plog/Initializers/RollingFileInitializer.h"
@@ -11,30 +11,31 @@
 #include "Tanki-Game.hh"
 
 
+#define GAME Game::GetInstance()
+
 class Game
 {
 private:
     // Singletone 
     static Game* pinstance_;
+    static std::mutex mutex_;
 
-    /*  Variables */
-    sf::RenderWindow* main_window;
+    // Variables 
+    SDL_Window* main_window;
 
-    sf::Clock dtClock;
-    float deltaTime;
-    /* ========== */
+    // Delta time
+    Uint64 dt_last = 0;
+    double deltaTime;
 
-    /* Initialization */
+    // Initialization 
     void initMainWindow();
     void initLogger();
-    /* ============== */
 
-    /* Update */
+    // Update 
     void updateEvents();
     void updateDt();
     void update();
     void render();
-    /* ====== */
 
 protected:
     Game();
