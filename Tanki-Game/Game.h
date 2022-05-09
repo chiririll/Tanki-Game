@@ -2,12 +2,17 @@
 #include <string>
 #include <mutex>
 #include <filesystem>
+#include <map>
+#include <fstream>
 
 #include <SDL.h>
 
 #include <plog/Log.h>
-#include "plog/Initializers/RollingFileInitializer.h"
-#include "plog/Appenders/ColorConsoleAppender.h"
+#include <plog/Initializers/RollingFileInitializer.h>
+#include <plog/Appenders/ColorConsoleAppender.h>
+
+// TODO: Compile for Debug
+#include <yaml-cpp/yaml.h>
 
 #include "Tanki-Game.hh"
 
@@ -26,6 +31,8 @@ private:
     // Variables 
     SDL_Window* main_window;
     SDL_Renderer* main_renderer;
+
+    std::map<std::string, YAML::Node> configs;
 
     // Delta time
     Uint64 dt_last;
@@ -60,3 +67,4 @@ public:
     // Variables
     inline double get_dt() { return deltaTime; }
 };
+

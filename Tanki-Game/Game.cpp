@@ -19,6 +19,7 @@ Game* Game::GetInstance()
 Game::Game()
 {
 	initLogger();
+	initConfigs();
 
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0) {
@@ -26,7 +27,6 @@ Game::Game()
 		std::exit(1);
 	}
 
-	initConfigs();
 	initMainWindow();
 	initMainRenderer();
 }
@@ -70,7 +70,16 @@ void Game::initMainWindow()
 
 	PLOG_INFO << "Initializing main window";
 
-	main_window = SDL_CreateWindow(GAME_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
+	// TODO: Load window flags from config
+	main_window = SDL_CreateWindow(
+		GAME_TITLE, 
+		SDL_WINDOWPOS_CENTERED, 
+		SDL_WINDOWPOS_CENTERED, 
+		// 1920, 1080,
+		configs["gfx"]["width"].as<int>(), 
+		configs["gfx"]["height"].as<int>(),
+		SDL_WINDOW_SHOWN
+	);
 
 	if (main_window == nullptr) {
 		PLOG_ERROR << "Can't create main window";
@@ -109,7 +118,9 @@ void Game::initLogger()
 
 void Game::initConfigs()
 {
-	// TODO: load config files
+	// TODO: load all configs and copy them if not exists
+	
+	configs["gfx"] = YAML::LoadFile(CONFIGS_FOLDER + "graphics.yml");
 }
 
 
