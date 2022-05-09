@@ -11,6 +11,7 @@
 
 #include "Tanki-Game.hh"
 
+
 namespace fs = std::filesystem;
 
 #define GAME Game::GetInstance()
@@ -27,7 +28,7 @@ private:
     SDL_Renderer* main_renderer;
 
     // Delta time
-    Uint64 dt_last = 0;
+    Uint64 dt_last;
     double deltaTime;
 
     // Initialization 

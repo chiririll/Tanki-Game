@@ -48,7 +48,6 @@ void Game::run()
 	}
 }
 
-
 // Stopper
 void Game::stop()
 {
@@ -146,10 +145,8 @@ void Game::updateEvents()
 }
 
 void Game::updateDt()
-{
-	Uint64 dt_now = SDL_GetPerformanceCounter();
-	
-	deltaTime = (double)((dt_now - dt_last) * 1000 / (double)SDL_GetPerformanceFrequency());
-
-	dt_last = dt_now;
+{	
+	Uint64 now = SDL_GetPerformanceCounter();
+	deltaTime = (now - dt_last) / (double)SDL_GetPerformanceFrequency();
+	dt_last = now;
 }

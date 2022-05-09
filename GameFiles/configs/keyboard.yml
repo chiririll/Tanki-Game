@@ -1,0 +1,9 @@
+// Motion
+move_up     =   w
+move_left   =   a
+move_down   =   s
+move_right  =   d
+
+// Combat
+attack      =   m1
+scope       =   m2
