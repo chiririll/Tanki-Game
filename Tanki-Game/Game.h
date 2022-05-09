@@ -3,7 +3,6 @@
 #include <mutex>
 #include <filesystem>
 #include <map>
-#include <fstream>
 
 #include <SDL.h>
 
@@ -11,7 +10,6 @@
 #include <plog/Initializers/RollingFileInitializer.h>
 #include <plog/Appenders/ColorConsoleAppender.h>
 
-// TODO: Compile for Debug
 #include <yaml-cpp/yaml.h>
 
 #include "Tanki-Game.hh"
@@ -21,6 +19,7 @@ namespace fs = std::filesystem;
 
 #define GAME Game::GetInstance()
 
+// TODO: Refactor
 class Game
 {
 private:

@@ -104,7 +104,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib\x86;$(SolutionDir)\External\SDL2-2.0.22\lib\x86;$(SolutionDir)\External\yaml-cpp-0.7.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;yaml-cpp.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib;yaml-cppd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +125,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\squirrel-3\lib\x86;$(SolutionDir)\External\SDL2-2.0.22\lib\x86;$(SolutionDir)\External\yaml-cpp-0.7.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;yaml-cpp.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib;yaml-cpp.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +142,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2-2.0.22\lib\x64;$(SolutionDir)\External\squirrel-3\lib\x64;$(SolutionDir)\External\yaml-cpp-0.7.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;yaml-cpp.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib;yaml-cppd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -163,7 +163,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2-2.0.22\lib\x64;$(SolutionDir)\External\squirrel-3\lib\x64;$(SolutionDir)\External\yaml-cpp-0.7.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>squirrel.lib;yaml-cpp.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;SDL2.lib;SDL2main.lib;shell32.lib;yaml-cpp.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
