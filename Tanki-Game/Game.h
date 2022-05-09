@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <mutex>
+#include <filesystem>
 
 #include <SDL.h>
 
@@ -10,6 +11,7 @@
 
 #include "Tanki-Game.hh"
 
+namespace fs = std::filesystem;
 
 #define GAME Game::GetInstance()
 
@@ -22,6 +24,7 @@ private:
 
     // Variables 
     SDL_Window* main_window;
+    SDL_Renderer* main_renderer;
 
     // Delta time
     Uint64 dt_last = 0;
@@ -29,7 +32,9 @@ private:
 
     // Initialization 
     void initMainWindow();
+    void initMainRenderer();
     void initLogger();
+    void initConfigs();
 
     // Update 
     void updateEvents();
@@ -42,10 +47,15 @@ protected:
     ~Game();
 
 public:
+    // Start and stop
     void run();
+    void stop();
 
     // Singletone 
     Game(Game& other) = delete;
     void operator=(const Game&) = delete;
     static Game* GetInstance();
+
+    // Variables
+    inline double get_dt() { return deltaTime; }
 };

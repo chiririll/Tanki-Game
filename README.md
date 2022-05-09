@@ -1,3 +1,9 @@
 # Tanki
 
-TODO:  Write something
+## Project structure
+
+TODO
+
+## Docs
+
+- [Exit codes](Tanki-Game/docs/ExitCodes.md)

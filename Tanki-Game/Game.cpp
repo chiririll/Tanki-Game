@@ -18,15 +18,17 @@ Game* Game::GetInstance()
 // Constructors & destructors
 Game::Game()
 {
-	this->initLogger();
+	initLogger();
 
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0) {
 		PLOG_ERROR << "Can't initialize SDL";
-		return;
+		std::exit(1);
 	}
 
-	this->initMainWindow();
+	initConfigs();
+	initMainWindow();
+	initMainRenderer();
 }
 
 Game::~Game()
@@ -38,36 +40,59 @@ Game::~Game()
 // Game Loop 
 void Game::run()
 {
-	while (this->main_window) {
-		this->updateDt();
-		this->updateEvents();
-		this->update();
-		this->render();
+	while (main_window) {
+		updateDt();
+		updateEvents();
+		update();
+		render();
 	}
+}
+
+
+// Stopper
+void Game::stop()
+{
+	PLOG_INFO << "Destroying renderer";
+	SDL_DestroyRenderer(main_renderer);
+
+	PLOG_INFO << "Closing main window";
+	SDL_DestroyWindow(main_window);
+	main_window = nullptr;
 }
 
 
 // Initializers 
 void Game::initMainWindow()
 {
-	if (this->main_window != nullptr) {
+	if (main_window != nullptr) {
 		PLOG_WARNING << "Attempted second time window initialization";
 		return;
 	}
 
 	PLOG_INFO << "Initializing main window";
 
-	this->main_window = SDL_CreateWindow(GAME_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
+	main_window = SDL_CreateWindow(GAME_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
 
-	if (this->main_window == nullptr)
+	if (main_window == nullptr) {
 		PLOG_ERROR << "Can't create main window";
-	else
-		PLOG_INFO << "Main window created";
+		std::exit(2);
+	}
+	PLOG_INFO << "Main window created";
+}
+
+void Game::initMainRenderer()
+{
+	main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
+	if (not main_renderer) {
+		PLOG_ERROR << "Can't initialize main renderer";
+		std::exit(3);
+	}
 }
 
 void Game::initLogger()
 {
-	// TODO: Create logs folder
+	// Creating logs folder
+	fs::create_directory(LOGS_FOLDER);
 	
 	// Log file path
 	std::string filename = LOGS_FOLDER + "tanki.log";
@@ -83,20 +108,25 @@ void Game::initLogger()
 	PLOG_INFO << "Logger initialized";
 }
 
+void Game::initConfigs()
+{
+	// TODO: load config files
+}
+
 
 // Update
 void Game::update()
 {
-	// PLOG_INFO << "FPS: " << 1 / this->deltaTime;
+	// PLOG_INFO << "FPS: " << 1 / deltaTime;
 }
 
 void Game::render()
 {
-	// this->main_window->clear();
-
+	SDL_RenderClear(main_renderer);
+	
 	// Render some stuff
 
-	// this->main_window->display();
+	SDL_RenderPresent(main_renderer);
 }
 
 void Game::updateEvents()
@@ -109,9 +139,7 @@ void Game::updateEvents()
 		switch (event.type)
 		{
 		case SDL_QUIT:
-			PLOG_INFO << "Closing main window";
-			SDL_DestroyWindow(this->main_window);
-			this->main_window = nullptr;
+			this->stop();
 			break;
 		}
 	}
