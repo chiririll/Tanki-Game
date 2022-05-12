@@ -23,7 +23,7 @@ Game::Game()
 
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0) {
-		PLOG_ERROR << "Can't initialize SDL";
+		PLOG_ERROR << "Can't initialize SDL: " << SDL_GetError();
 		std::exit(1);
 	}
 
@@ -82,7 +82,7 @@ void Game::initMainWindow()
 	);
 
 	if (main_window == nullptr) {
-		PLOG_ERROR << "Can't create main window";
+		PLOG_ERROR << "Can't create main window: " << SDL_GetError();
 		std::exit(2);
 	}
 	PLOG_INFO << "Main window created";
@@ -92,7 +92,7 @@ void Game::initMainRenderer()
 {
 	main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
 	if (not main_renderer) {
-		PLOG_ERROR << "Can't initialize main renderer";
+		PLOG_ERROR << "Can't initialize main renderer: " << SDL_GetError();
 		std::exit(3);
 	}
 }
