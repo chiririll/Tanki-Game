@@ -149,7 +149,7 @@ void Game::updateEvents()
 		switch (event.type)
 		{
 		case SDL_QUIT:
-			this->stop();
+			this->Stop();
 			break;
 		}
 	}

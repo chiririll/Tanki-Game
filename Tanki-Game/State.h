@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <map>
 
 #include "GameObject.h"
 #include "Map.h"
@@ -9,14 +9,30 @@
 class State
 {
 private:
-	std::vector<GameObject*> m_game_objects;
+	std::map<unsigned short, GameObject*> m_game_objects;
+	unsigned short m_free_id = 1;
+	
+	// TODO: Add friend class for networking 
+
+protected:
 	Map m_map;
 	HUD m_hud;
 
 public:
-	virtual void Start() {};
-	virtual void Update() {};
-	virtual void FixedUpdate() {};
-	virtual void Render() {};
+	// Constructors and destructors
+	State();
+	virtual ~State();
+
+	// Game Objects
+	// TODO: Make accessable by server only
+	int AddGameObject(GameObject* object, unsigned short id);
+	GameObject* GetGameObject(unsigned short id);
+	void RemoveGameObject(unsigned short id);
+	void RebaseGameObjects();
+
+	// Updaters
+	virtual void Update();
+	virtual void FixedUpdate();
+	virtual void Render();
 };
 
