@@ -38,9 +38,9 @@ Game::~Game()
 
 
 // Game Loop 
-void Game::run()
+void Game::Run()
 {
-	while (main_window) {
+	while (m_main_window) {
 		updateDt();
 		updateEvents();
 		update();
@@ -49,21 +49,21 @@ void Game::run()
 }
 
 // Stopper
-void Game::stop()
+void Game::Stop()
 {
 	PLOG_INFO << "Destroying renderer";
-	SDL_DestroyRenderer(main_renderer);
+	SDL_DestroyRenderer(m_main_renderer);
 
 	PLOG_INFO << "Closing main window";
-	SDL_DestroyWindow(main_window);
-	main_window = nullptr;
+	SDL_DestroyWindow(m_main_window);
+	m_main_window = nullptr;
 }
 
 
 // Initializers 
 void Game::initMainWindow()
 {
-	if (main_window != nullptr) {
+	if (m_main_window != nullptr) {
 		PLOG_WARNING << "Attempted second time window initialization";
 		return;
 	}
@@ -71,7 +71,7 @@ void Game::initMainWindow()
 	PLOG_INFO << "Initializing main window";
 
 	// TODO: Load window flags from config
-	main_window = SDL_CreateWindow(
+	m_main_window = SDL_CreateWindow(
 		GAME_TITLE, 
 		SDL_WINDOWPOS_CENTERED, 
 		SDL_WINDOWPOS_CENTERED, 
@@ -81,7 +81,7 @@ void Game::initMainWindow()
 		SDL_WINDOW_SHOWN
 	);
 
-	if (main_window == nullptr) {
+	if (m_main_window == nullptr) {
 		PLOG_ERROR << "Can't create main window: " << SDL_GetError();
 		std::exit(2);
 	}
@@ -90,8 +90,8 @@ void Game::initMainWindow()
 
 void Game::initMainRenderer()
 {
-	main_renderer = SDL_CreateRenderer(main_window, -1, SDL_RENDERER_ACCELERATED);
-	if (not main_renderer) {
+	m_main_renderer = SDL_CreateRenderer(m_main_window, -1, SDL_RENDERER_ACCELERATED);
+	if (not m_main_renderer) {
 		PLOG_ERROR << "Can't initialize main renderer: " << SDL_GetError();
 		std::exit(3);
 	}
@@ -132,11 +132,11 @@ void Game::update()
 
 void Game::render()
 {
-	SDL_RenderClear(main_renderer);
+	SDL_RenderClear(m_main_renderer);
 	
 	// Render some stuff
 
-	SDL_RenderPresent(main_renderer);
+	SDL_RenderPresent(m_main_renderer);
 }
 
 void Game::updateEvents()

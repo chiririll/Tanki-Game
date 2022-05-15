@@ -1,0 +1,20 @@
+{
+    "component": "sprite",
+    "params": [
+        {
+            "name": "texture",
+            "type": "string",
+            "default": "textures/missing.png"
+        },
+        {
+            "name": "offset",
+            "type": "vector",
+            "default": [0.0, 0.0]
+        },
+        {
+            "name": "scale",
+            "type": "vector",
+            "default": [1.0, 1.0]
+        }
+    ]
+}

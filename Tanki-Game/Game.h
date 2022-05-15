@@ -13,6 +13,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "Tanki-Game.hh"
+#include "State.h"
 
 
 namespace fs = std::filesystem;
@@ -28,9 +29,11 @@ private:
     static std::mutex mutex_;
 
     // Variables 
-    SDL_Window* main_window;
-    SDL_Renderer* main_renderer;
+    SDL_Window* m_main_window;
+    SDL_Renderer* m_main_renderer;
+    State* m_state;
 
+    // Configs
     std::map<std::string, YAML::Node> configs;
 
     // Delta time
@@ -55,11 +58,14 @@ protected:
 
 public:
     // Start and stop
-    void run();
-    void stop();
+    void Run();
+    void Stop();
+
+    // States
+    void PushState();
 
     // Singletone 
-    Game(Game& other) = delete;
+    Game(Game&) = delete;
     void operator=(const Game&) = delete;
     static Game* GetInstance();
 

@@ -4,7 +4,7 @@
 int main(int argc, char* argv[])
 {	
 	Game* game = Game::GetInstance();
-	game->run();
+	game->Run();
 
 	return 0;
 }

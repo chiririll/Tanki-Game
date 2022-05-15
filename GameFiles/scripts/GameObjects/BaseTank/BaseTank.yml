@@ -1,0 +1,33 @@
+# Base game object
+base: None
+
+# Params
+abstract: true
+moveable: true      # May be useless
+controllable: true
+playable: true      # May be useless
+
+# Variables for inheritance
+params:
+- head_texture
+  - body_texture
+  - shoot_sound: sounds/shoot.ogg
+
+# List of components
+components:
+  - name: sprite_head
+    type: Sprite
+    params:
+      - texture: $head_texture
+      - offset: 0, -1
+  
+  - name: sprite_body
+    type: Sprite
+    params:
+      - texture: $body_texture
+  
+  - name: sound_cannon
+    type: AudioSource
+
+  - name: sound_engine
+    type: AudioSource
