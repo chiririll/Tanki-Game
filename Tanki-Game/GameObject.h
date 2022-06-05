@@ -6,7 +6,7 @@ class GameObject
 private:
 	unsigned short m_id;
 
-	friend class State;
+	friend class NetworkState;
 
 protected:
 
@@ -21,4 +21,3 @@ public:
 	virtual void FixedUpdate();
 	virtual void Render();
 };
-

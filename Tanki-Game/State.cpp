@@ -3,58 +3,57 @@
 // Constructors and destructors
 State::State()
 {
+
 }
 
 State::~State()
 {
-}
 
+}
 
 // Game Objects
-int State::AddGameObject(GameObject* object, unsigned short id = 0)
+void State::addGameObject(GameObject* object, uint16_t id = 0)
 {
-	// If we want custom id and it's free
-	if (!id || !m_game_objects.contains(id))
-		id = m_free_id++;
+	// If vector too short
+	if (m_game_objects.size() <= id) {
+		m_game_objects.resize(id + 1);
+		m_game_objects[id] = object;
+	}
 
-	object->m_id = id;
-	m_game_objects[m_free_id] = object;
-	return id;
+	// If id collision
+	if (m_game_objects[id] != nullptr)
+		throw std::runtime_error("Object with id = " + std::to_string(id) + " already exists!");
+	
+	// All is ok
+	m_game_objects[id] = object;
 }
 
-GameObject* State::GetGameObject(unsigned short id)
+uint16_t State::addGameObject(GameObject* object)
 {
-	if (m_game_objects.contains(id))
+	for (uint16_t i = m_start_search; i < m_game_objects.size(); i++)
+		if (m_game_objects[i] == nullptr) {
+			m_game_objects[i] = object;
+			m_start_search = i + 1;
+			return i;
+		}
+	
+	m_game_objects.push_back(object);
+	m_start_search = m_game_objects.size();
+	return m_game_objects.size() - 1;
+}
+
+GameObject* State::getGameObject(uint16_t id)
+{
+	if (m_game_objects.size() > id)
 		return m_game_objects[id];
 	return nullptr;
 }
 
-void State::RemoveGameObject(unsigned short id)
+void State::deleteGameObject(uint16_t id)
 {
-	if (!m_game_objects.contains(id))
-		return;
-
-	m_game_objects.erase(id);
-}
-
-void State::RebaseGameObjects()
-{
-	// TODO
-}
-
-
-// Updates
-void State::Update()
-{
-	// TODO: Foreach GameObject call Update
-}
-
-void State::FixedUpdate()
-{
-	// TODO: -//-
-}
-
-void State::Render()
-{
-	// TODO: -//-
+	if (m_game_objects.size() > id && m_game_objects[id]) {
+		delete m_game_objects[id];
+		if (id < m_start_search)
+			m_start_search = id;
+	}
 }

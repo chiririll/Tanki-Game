@@ -1,16 +1,13 @@
 #include "Game.h"
 
 
-// Singletone stuff 
-Game* Game::pinstance_{ nullptr };
-std::mutex Game::mutex_;
+// Singleton stuff 
+Game* Game::pinstance_ = nullptr;
 
 Game* Game::GetInstance()
 {
-	std::lock_guard<std::mutex> lock(mutex_);
-	if (pinstance_ == nullptr) {
+	if (pinstance_ == nullptr)
 		pinstance_ = new Game();
-	}
 	return pinstance_;
 }
 
@@ -32,7 +29,7 @@ Game::Game()
 }
 
 Game::~Game()
-{	
+{
 	SDL_Quit();
 }
 
@@ -40,11 +37,10 @@ Game::~Game()
 // Game Loop 
 void Game::Run()
 {
-	while (m_main_window) {
-		updateDt();
+	while (m_main_window != nullptr) {
 		updateEvents();
 		update();
-		render();
+		updateDt();
 	}
 }
 
@@ -70,14 +66,13 @@ void Game::initMainWindow()
 
 	PLOG_INFO << "Initializing main window";
 
-	// TODO: Load window flags from config
+	// TODO: Load params from config
 	m_main_window = SDL_CreateWindow(
 		GAME_TITLE, 
 		SDL_WINDOWPOS_CENTERED, 
 		SDL_WINDOWPOS_CENTERED, 
-		// 1920, 1080,
-		configs["gfx"]["width"].as<int>(), 
-		configs["gfx"]["height"].as<int>(),
+		1024, 
+		576,
 		SDL_WINDOW_SHOWN
 	);
 
@@ -119,14 +114,19 @@ void Game::initLogger()
 void Game::initConfigs()
 {
 	// TODO: load all configs and copy them if not exists
-	
-	configs["gfx"] = YAML::LoadFile(CONFIGS_FOLDER + "graphics.yml");
 }
 
 
 // Update
 void Game::update()
 {
+	
+	// TODO: Updating states
+
+	// TODO: Fixed update
+
+	m_state->Update();
+	render();
 	// PLOG_INFO << "FPS: " << 1 / deltaTime;
 }
 
@@ -135,8 +135,14 @@ void Game::render()
 	SDL_RenderClear(m_main_renderer);
 	
 	// Render some stuff
+	m_state->Render();
 
 	SDL_RenderPresent(m_main_renderer);
+}
+
+void Game::drawUI()
+{
+	m_state->DrawUI();
 }
 
 void Game::updateEvents()
@@ -160,4 +166,17 @@ void Game::updateDt()
 	Uint64 now = SDL_GetPerformanceCounter();
 	deltaTime = (now - dt_last) / (double)SDL_GetPerformanceFrequency();
 	dt_last = now;
+}
+
+
+// State
+void Game::PushState(State* state)
+{
+	if (state == nullptr)
+		return;
+
+	if (m_state != nullptr)
+		delete m_state;
+
+	m_state = state;
 }

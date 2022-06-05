@@ -1,40 +1,41 @@
 #pragma once
+// C++ libs
 #include <string>
-#include <mutex>
 #include <filesystem>
 #include <map>
 
+// External libs
 #include <SDL.h>
 
+// Logger
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
 #include <plog/Appenders/ColorConsoleAppender.h>
 
-#include <yaml-cpp/yaml.h>
-
+// Properties
 #include "Tanki-Game.hh"
+
+// States
 #include "State.h"
 
 
-namespace fs = std::filesystem;
-
 #define GAME Game::GetInstance()
 
-// TODO: Refactor
+namespace fs = std::filesystem;
+
+
 class Game
 {
 private:
-    // Singletone 
+    // Singleton
     static Game* pinstance_;
-    static std::mutex mutex_;
 
     // Variables 
     SDL_Window* m_main_window;
     SDL_Renderer* m_main_renderer;
     State* m_state;
 
-    // Configs
-    std::map<std::string, YAML::Node> configs;
+    // TODO: Configs
 
     // Delta time
     Uint64 dt_last;
@@ -46,14 +47,17 @@ private:
     void initLogger();
     void initConfigs();
 
-    // Update 
+    // Updaters 
     void updateEvents();
     void updateDt();
     void update();
     void render();
+    void drawUI();
 
 protected:
     Game();
+    Game(Game&) = delete;
+    void operator=(const Game&) = delete;
     ~Game();
 
 public:
@@ -62,14 +66,12 @@ public:
     void Stop();
 
     // States
-    void PushState();
+    void PushState(State* = nullptr);
 
-    // Singletone 
-    Game(Game&) = delete;
-    void operator=(const Game&) = delete;
+    // Singleton
     static Game* GetInstance();
 
-    // Variables
+    // Getters
     inline double get_dt() { return deltaTime; }
+    inline SDL_Renderer* GetRenderer() { return m_main_renderer; }
 };
-
