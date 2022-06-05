@@ -29,6 +29,12 @@
     <Filter Include="Header Files\HUD">
       <UniqueIdentifier>{ab616bb5-011b-4b90-ac1d-7402695e9b91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AssetManager">
+      <UniqueIdentifier>{4634b665-ef61-4cd8-8b97-470196aa9cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AssetManager">
+      <UniqueIdentifier>{5662da10-199c-4d6a-aa9f-9d8b75194736}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,13 +43,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NetworkState.cpp">
@@ -58,6 +58,18 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Source Files\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>Source Files\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Source Files\AssetManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\AssetManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Source Files\AssetManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -66,13 +78,7 @@
     <ClInclude Include="Tanki-Game.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NetworkState.h">
@@ -86,6 +92,18 @@
     </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Header Files\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>Header Files\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Header Files\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Header Files\AssetManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

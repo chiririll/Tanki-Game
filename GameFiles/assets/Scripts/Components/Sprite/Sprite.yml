@@ -1,0 +1,21 @@
+component: sprite
+
+params:
+  - name: texture
+    type: string
+    default: textures/missing.png
+  
+  - name: color
+    type: color
+    default: rgb(255, 255, 255)
+  
+  - name: offset
+    type: vector
+    default: 0, 0
+  
+  - name: scale
+    type: vector
+    default: 0, 0
+
+methods:
+  - 

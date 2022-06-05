@@ -1,0 +1,5 @@
+base: BaseTank
+
+params:
+  - head_texture: tanks/T34/head.png
+  - body_texture: tanks/T34/body.png

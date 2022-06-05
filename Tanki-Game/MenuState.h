@@ -16,7 +16,7 @@ protected:
 public:
 	// Constructors and destructors
 	MenuState();
-	virtual ~MenuState() = default;
+	virtual ~MenuState();
 
 	// Updaters
 	void Update() override;
