@@ -35,6 +35,12 @@
     <Filter Include="Source Files\AssetManager">
       <UniqueIdentifier>{5662da10-199c-4d6a-aa9f-9d8b75194736}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Configs">
+      <UniqueIdentifier>{78acf465-b4da-4c20-935e-5bab15e9fc5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Configs">
+      <UniqueIdentifier>{55a3ab28-ac49-4b1d-b760-c3c03b2a1564}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -70,6 +76,18 @@
     <ClCompile Include="Asset.cpp">
       <Filter>Source Files\AssetManager</Filter>
     </ClCompile>
+    <ClCompile Include="Configs\Config.cpp">
+      <Filter>Source Files\Configs</Filter>
+    </ClCompile>
+    <ClCompile Include="Configs\Gfx.cpp">
+      <Filter>Source Files\Configs</Filter>
+    </ClCompile>
+    <ClCompile Include="Configs\Keybinds.cpp">
+      <Filter>Source Files\Configs</Filter>
+    </ClCompile>
+    <ClCompile Include="Configs\Sound.cpp">
+      <Filter>Source Files\Configs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -104,6 +122,18 @@
     </ClInclude>
     <ClInclude Include="Asset.h">
       <Filter>Header Files\AssetManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Configs\Gfx.h">
+      <Filter>Header Files\Configs</Filter>
+    </ClInclude>
+    <ClInclude Include="Configs\Keybinds.h">
+      <Filter>Header Files\Configs</Filter>
+    </ClInclude>
+    <ClInclude Include="Configs\Sound.h">
+      <Filter>Header Files\Configs</Filter>
+    </ClInclude>
+    <ClInclude Include="Configs\Config.h">
+      <Filter>Header Files\Configs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,9 +15,6 @@ Game* Game::GetInstance()
 // Constructors & destructors
 Game::Game()
 {
-	initLogger();
-	initConfigs();
-
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0) {
 		PLOG_ERROR << "Can't initialize SDL: " << SDL_GetError();
@@ -42,6 +39,7 @@ void Game::Run()
 		update();
 		updateDt();
 	}
+	delete this;
 }
 
 // Stopper
@@ -71,9 +69,9 @@ void Game::initMainWindow()
 		GAME_TITLE, 
 		SDL_WINDOWPOS_CENTERED, 
 		SDL_WINDOWPOS_CENTERED, 
-		1024, 
-		576,
-		SDL_WINDOW_SHOWN
+		m_gfx_conf.window_w(),
+		m_gfx_conf.window_h(),
+		SDL_WINDOW_SHOWN | m_gfx_conf.window_flags()
 	);
 
 	if (m_main_window == nullptr) {
@@ -91,31 +89,6 @@ void Game::initMainRenderer()
 		std::exit(3);
 	}
 }
-
-void Game::initLogger()
-{
-	// Creating logs folder
-	fs::create_directory(LOGS_FOLDER);
-	
-	// Log file path
-	std::string filename = LOGS_FOLDER + "tanki.log";
-
-	// Adding file appender
-	static plog::RollingFileAppender<plog::TxtFormatter> fileAppender(&filename[0], LOGGER_FILE_SIZE, LOGGER_MAX_FILES);
-	// Adding console appender
-	static plog::ColorConsoleAppender<plog::TxtFormatter> consoleAppender;
-	
-	// Initializing logger
-	plog::init(plog::debug, &fileAppender).addAppender(&consoleAppender);
-
-	PLOG_INFO << "Logger initialized";
-}
-
-void Game::initConfigs()
-{
-	// TODO: load all configs and copy them if not exists
-}
-
 
 // Update
 void Game::update()

@@ -18,6 +18,9 @@
 // States
 #include "State.h"
 
+// Configs
+#include "Configs/Gfx.h"
+
 
 #define GAME Game::GetInstance()
 
@@ -35,7 +38,8 @@ private:
     SDL_Renderer* m_main_renderer;
     State* m_state;
 
-    // TODO: Configs
+    // Configs
+    cfg::Gfx m_gfx_conf;
 
     // Delta time
     Uint64 dt_last;
@@ -44,8 +48,6 @@ private:
     // Initialization 
     void initMainWindow();
     void initMainRenderer();
-    void initLogger();
-    void initConfigs();
 
     // Updaters 
     void updateEvents();

@@ -1,7 +1,0 @@
-# Modes: fullscreen, native, borderless
-mode: fullscreen
-width: 1024
-height: 576
-# 0 - unlimited
-fps_lock: 0
-vsync: true
