@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 #include "GameObject.h"
+#include "Assets/AssetManager.h"
 #include "Map.h"
 #include "HUD.h"
 
@@ -22,6 +23,9 @@ private:
 	State& operator=(const State&) = delete;
 
 protected:
+	// Asset Manager
+	const AssetManager* m_assets;
+
 	// Game objects
 	void addGameObject(GameObject* object, uint16_t id);
 	uint16_t addGameObject(GameObject* object);
@@ -30,8 +34,15 @@ protected:
 
 public:
 	// Constructors and destructors
-	State();
+	State(): State(nullptr) {};
+	State(const AssetManager* asset_manager);
 	virtual ~State();
+
+	// Variables
+	void AddAssetManager(const AssetManager* manager);
+
+	// Start
+	virtual void Start() = 0;
 
 	// Updaters
 	virtual void Update() = 0;

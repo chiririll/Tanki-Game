@@ -2,21 +2,27 @@
 
 MenuState::~MenuState() {
 	SDL_DestroyTexture(m_bg_texture);
+	Mix_FreeMusic(m_music);
 }
 
 // Constructors & destructors
 MenuState::MenuState(): State()
 {
 	PLOG_INFO << "Initialising main menu state";
-	
-	const fs::path bg_path = BASE_DIR / fs::path("bg.png");
-
-	SDL_Surface* surf = IMG_Load(bg_path.string().c_str());
-	m_bg_texture = SDL_CreateTextureFromSurface(GAME->GetRenderer(), surf);
-	SDL_FreeSurface(surf);
-	
-	PLOG_INFO << "Main menu initialised";
 }
+
+
+// Start
+void MenuState::Start()
+{
+	// Loading image 
+	m_bg_texture = m_assets->GetTexture("default.png");
+	// Loading music
+	m_music = m_assets->GetMusic("obormot.mp3");
+
+	Mix_PlayMusic(m_music, -1);
+}
+
 
 // Updaters
 void MenuState::Update()

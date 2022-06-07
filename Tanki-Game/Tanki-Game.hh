@@ -11,7 +11,7 @@ namespace fs = std::filesystem;
 
 // Directories
 const fs::path BIN_DIR(SDL_GetBasePath());
-const fs::path BASE_DIR (BIN_DIR / fs::path("../../"));
+const fs::path BASE_DIR (BIN_DIR.parent_path().parent_path().parent_path());
 const fs::path SAVES_DIR (SDL_GetPrefPath("", "TankiGame"));
 
 const fs::path LOGS_FOLDER (SAVES_DIR / "logs");

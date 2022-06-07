@@ -45,7 +45,7 @@ private:
     cfg::Gfx m_gfx_conf;
 
     // Assets
-    AssetManager assets;
+    AssetManager m_assets;
 
     // Delta time
     Uint64 dt_last;
@@ -54,6 +54,7 @@ private:
     // Initialization 
     void initMainWindow();
     void initMainRenderer();
+    void initAssets();
     void initAudio();
     void initFolders();
 
@@ -82,6 +83,7 @@ public:
     static Game* GetInstance();
 
     // Getters
-    inline double get_dt() { return deltaTime; }
-    inline SDL_Renderer* GetRenderer() { return m_main_renderer; }
+    double get_dt() { return deltaTime; }
+    SDL_Renderer* GetRenderer() { return m_main_renderer; }
+    const AssetManager* GetAssetManager() { return &m_assets; }
 };

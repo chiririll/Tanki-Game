@@ -1,7 +1,7 @@
 #include "State.h"
 
 // Constructors and destructors
-State::State()
+State::State(const AssetManager* asset_manager) : m_assets(asset_manager)
 {
 
 }
@@ -9,6 +9,11 @@ State::State()
 State::~State()
 {
 
+}
+
+void State::AddAssetManager(const AssetManager* manager)
+{
+	m_assets = manager;
 }
 
 // Game Objects

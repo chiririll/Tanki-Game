@@ -24,6 +24,7 @@ Game::Game()
 	initFolders();
 	initMainWindow();
 	initMainRenderer();
+	initAssets();
 	initAudio();
 }
 
@@ -90,6 +91,13 @@ void Game::initMainRenderer()
 		PLOG_ERROR << "Can't initialize main renderer: " << SDL_GetError();
 		std::exit(3);
 	}
+	m_assets.SetRenderer(m_main_renderer);
+}
+
+void Game::initAssets()
+{
+	// TODO
+	// m_assets.AddContainer();
 }
 
 void Game::initAudio()
@@ -169,4 +177,7 @@ void Game::PushState(State* state)
 		delete m_state;
 
 	m_state = state;
+	m_state->AddAssetManager(&m_assets);
+
+	m_state->Start();
 }
