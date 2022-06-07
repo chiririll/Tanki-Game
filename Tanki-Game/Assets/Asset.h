@@ -4,12 +4,14 @@
 class Asset
 {
 private:
-	std::vector<uint8_t> data;
+	unsigned int size;
+	char* data;
 
 protected:
 
 
 public:
-	Asset(int size) : data(size) {};
+	Asset(int size);
+	Asset() = default;
 	virtual ~Asset() = default;
 };

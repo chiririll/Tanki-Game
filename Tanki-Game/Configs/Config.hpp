@@ -17,7 +17,7 @@ namespace cfg
 	private:
 		json m_config;
 
-		string m_filepath;
+		fs::path m_filepath;
 		string m_filename;
 
 	protected:
@@ -44,8 +44,6 @@ namespace cfg
 template <typename T>
 inline T cfg::Config::GetValue(const string& key) const
 {
-	PLOG_DEBUG << "Getting value '" + key + "'";
-
 	json::json_pointer ptr(key);
 
 	if (m_config.contains(ptr))

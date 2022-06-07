@@ -4,7 +4,7 @@
 // Constructors & destructors
 cfg::Config::Config(const string& filename): m_filename(filename)
 {
-	m_filepath = CONFIGS_FOLDER + "/" + m_filename + ".json";
+	m_filepath = CONFIGS_FOLDER / (m_filename + ".json");
 	Load();
 }
 
@@ -29,7 +29,7 @@ void cfg::Config::Load()
 		m_config = json::parse(fin);
 	}
 	catch (json::parse_error e) {
-		PLOG_ERROR << "Invalid json file '" + m_filepath + "': " + e.what();
+		PLOG_ERROR << "Invalid json file '" + m_filepath.string() + "': " + e.what();
 	}
 }
 
@@ -39,7 +39,7 @@ void cfg::Config::Save() const
 	std::ofstream fout(m_filepath);
 
 	if (fout.fail()) {
-		PLOG_ERROR << "Cant save config file '" + m_filepath + "'";
+		PLOG_ERROR << "Cant save config file '" + m_filepath.string() + "'";
 		return;
 	}
 

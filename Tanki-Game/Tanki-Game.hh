@@ -1,16 +1,21 @@
 #pragma once
 #include <string>
+#include <filesystem>
 
+#include <SDL_filesystem.h>
+
+namespace fs = std::filesystem;
 
 // Game title
 #define GAME_TITLE		"Tanki!"
 
 // Directories
-const std::string BASE_DIR			= "../../";
-// const std::string SAVES_DIR			= "";
+const fs::path BIN_DIR(SDL_GetBasePath());
+const fs::path BASE_DIR (BIN_DIR / fs::path("../../"));
+const fs::path SAVES_DIR (SDL_GetPrefPath("", "TankiGame"));
 
-const std::string LOGS_FOLDER		= BASE_DIR + "logs/";
-const std::string CONFIGS_FOLDER	= BASE_DIR + "configs/";
+const fs::path LOGS_FOLDER (SAVES_DIR / "logs");
+const fs::path CONFIGS_FOLDER (SAVES_DIR / "configs");
 
 
 // Logger settings

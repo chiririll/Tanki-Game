@@ -4,4 +4,4 @@
 - 1: Can't initialize SDL
 - 2: Can't create main window
 - 3: Can't initialize main renderer
-- 4: Invalid config key
+- 4: Cant initialize audio

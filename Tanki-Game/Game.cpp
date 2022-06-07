@@ -16,13 +16,15 @@ Game* Game::GetInstance()
 Game::Game()
 {
 	// Initializing SDL
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0) {
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO) != 0) {
 		PLOG_ERROR << "Can't initialize SDL: " << SDL_GetError();
 		std::exit(1);
 	}
 
+	initFolders();
 	initMainWindow();
 	initMainRenderer();
+	initAudio();
 }
 
 Game::~Game()
@@ -90,6 +92,22 @@ void Game::initMainRenderer()
 	}
 }
 
+void Game::initAudio()
+{
+	// Initialize SDL_mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		PLOG_ERROR << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError();
+		std::exit(4);
+	}
+}
+
+void Game::initFolders()
+{
+	fs::create_directory(LOGS_FOLDER);
+	fs::create_directory(CONFIGS_FOLDER);
+}
+
 // Update
 void Game::update()
 {
@@ -140,7 +158,6 @@ void Game::updateDt()
 	deltaTime = (now - dt_last) / (double)SDL_GetPerformanceFrequency();
 	dt_last = now;
 }
-
 
 // State
 void Game::PushState(State* state)

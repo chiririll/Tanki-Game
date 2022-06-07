@@ -1,8 +1,10 @@
 #pragma once
 // C++ libs
 #include <string>
-#include <filesystem>
 #include <map>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 // External libs
 #include <SDL.h>
@@ -21,10 +23,11 @@
 // Configs
 #include "Configs/Gfx.h"
 
+// Assets
+#include "Assets/AssetManager.h"
+
 
 #define GAME Game::GetInstance()
-
-namespace fs = std::filesystem;
 
 
 class Game
@@ -41,6 +44,9 @@ private:
     // Configs
     cfg::Gfx m_gfx_conf;
 
+    // Assets
+    AssetManager assets;
+
     // Delta time
     Uint64 dt_last;
     double deltaTime;
@@ -48,6 +54,8 @@ private:
     // Initialization 
     void initMainWindow();
     void initMainRenderer();
+    void initAudio();
+    void initFolders();
 
     // Updaters 
     void updateEvents();

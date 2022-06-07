@@ -167,12 +167,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Asset.cpp" />
-    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Assets\Asset.cpp" />
+    <ClCompile Include="Assets\AssetContainer.cpp" />
+    <ClCompile Include="Assets\AssetManager.cpp" />
     <ClCompile Include="Configs\Config.cpp" />
     <ClCompile Include="Configs\Gfx.cpp" />
     <ClCompile Include="Configs\Keybinds.cpp" />
     <ClCompile Include="Configs\Sound.cpp" />
+    <ClCompile Include="Assets\FolderContainer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -184,12 +186,14 @@
     <ClCompile Include="Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Asset.h" />
-    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Assets\Asset.h" />
+    <ClInclude Include="Assets\AssetContainer.h" />
+    <ClInclude Include="Assets\AssetManager.h" />
     <ClInclude Include="Configs\Config.hpp" />
     <ClInclude Include="Configs\Gfx.h" />
     <ClInclude Include="Configs\Keybinds.h" />
     <ClInclude Include="Configs\Sound.h" />
+    <ClInclude Include="Assets\FolderContainer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HUD.h" />
