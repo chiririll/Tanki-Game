@@ -3,29 +3,33 @@
 
 cfg::Gfx::Gfx(): Config("gfx")
 {
-	// Initialize defaults
-	// Window
-	setDefault("window_resolution", {1920, 1080});
-	setDefault("window_mode", "windowed");
+	// Initialising defaults
+	/*SetDefault("/resolution",
+		{
+			{"width", 720},
+			{"height", 576}
+		});*/
+	SetDefault("/resolution/width", 720);
+	SetDefault("/resolution/height", 480);
 
-	// FPS
-	setDefault("fps_max", 240);
+	SetDefault("/window_mode", "windowed");
+	SetDefault("/fps_lock", 240);
 }
 
 // Window params
 int cfg::Gfx::window_w() const
 {
-	return m_config["window_resolution"][0].get<int>();
+	return GetValue<int>("/resolution/width");
 }
 
 int cfg::Gfx::window_h() const
 {
-	return m_config["window_resolution"][1].get<int>();
+	return GetValue<int>("/resolution/height");
 }
 
 Uint32 cfg::Gfx::window_flags() const
 {
-	string mode = m_config["window_mode"].get<string>();
+	string mode = GetValue<string>("/window_mode");
 	
 	if (mode == "fullscreen")
 		return SDL_WINDOW_FULLSCREEN;
@@ -37,5 +41,5 @@ Uint32 cfg::Gfx::window_flags() const
 
 int cfg::Gfx::fps_max() const
 {
-	return m_config["fps_max"].get<int>();
+	return GetValue<int>("/fps_lock");
 }

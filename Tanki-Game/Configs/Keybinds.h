@@ -1,5 +1,5 @@
 #pragma once
-#include "Config.h"
+#include "Config.hpp"
 
 namespace cfg
 {
@@ -7,4 +7,4 @@ namespace cfg
 	{
 
 	};
-}
+} // namespace cfg

@@ -1,4 +1,4 @@
-#include "Config.h"
+#include "Config.hpp"
 
 
 // Constructors & destructors
@@ -48,18 +48,23 @@ void cfg::Config::Save() const
 
 
 // Values
-void cfg::Config::setDefault(const string& key, json value)
+void cfg::Config::SetValue(const string& key_str, const json& value) 
 {
-	if (m_config.contains(key) && m_config[key].type_name() == value.type_name())
-		return;
-	
-	// Todo: check arrays
-
+	json::json_pointer key(key_str);
 	SetValue(key, value);
 }
 
-void cfg::Config::SetValue(const string& key, const json& value) 
+void cfg::Config::SetValue(const json::json_pointer& key, const json& value)
 {
-	PLOG_DEBUG << "Adding key '" + key + "' to config '" + m_filename + "'";
+	PLOG_DEBUG << "Adding key '" + key.to_string() + "' to config '" + m_filename + "'";
 	m_config[key] = value;
+}
+
+void cfg::Config::SetDefault(const string& key_str, const json& value)
+{
+	json::json_pointer key(key_str);
+	if (m_config.contains(key) && m_config[key].type_name() == value.type_name())
+		return;
+
+	SetValue(key, value);
 }

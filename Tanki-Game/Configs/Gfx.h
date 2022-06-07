@@ -1,7 +1,7 @@
 #pragma once
 #include <sdl.h>
 
-#include "Config.h"
+#include "Config.hpp"
 
 namespace cfg
 {
@@ -10,7 +10,7 @@ namespace cfg
 	public:
 		Gfx();
 		~Gfx() = default;
-		
+
 		// Window
 		int window_w() const;
 		int window_h() const;
@@ -18,4 +18,4 @@ namespace cfg
 
 		int fps_max() const;
 	};
-}
+} // namespace cfg

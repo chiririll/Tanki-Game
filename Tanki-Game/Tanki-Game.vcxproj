@@ -186,7 +186,7 @@
   <ItemGroup>
     <ClInclude Include="Asset.h" />
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="Configs\Config.h" />
+    <ClInclude Include="Configs\Config.hpp" />
     <ClInclude Include="Configs\Gfx.h" />
     <ClInclude Include="Configs\Keybinds.h" />
     <ClInclude Include="Configs\Sound.h" />

@@ -132,7 +132,7 @@
     <ClInclude Include="Configs\Sound.h">
       <Filter>Header Files\Configs</Filter>
     </ClInclude>
-    <ClInclude Include="Configs\Config.h">
+    <ClInclude Include="Configs\Config.hpp">
       <Filter>Header Files\Configs</Filter>
     </ClInclude>
   </ItemGroup>
