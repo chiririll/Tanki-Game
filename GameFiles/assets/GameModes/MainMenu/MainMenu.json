@@ -1,0 +1,7 @@
+{
+    "background_image": "Backgrounds/menu.png",
+    "music": {
+        "file": "fingerloop.mp3",
+        "loops": -1
+    }
+}

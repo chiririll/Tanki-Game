@@ -179,6 +179,7 @@
     <ClCompile Include="HUD\HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Map.cpp" />
+    <ClCompile Include="States\GameState.cpp" />
     <ClCompile Include="States\MenuState.cpp" />
     <ClCompile Include="States\NetworkState.cpp" />
     <ClCompile Include="States\State.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HUD\HUD.h" />
     <ClInclude Include="Map\Map.h" />
+    <ClInclude Include="States\GameState.h" />
     <ClInclude Include="States\MenuState.h" />
     <ClInclude Include="States\NetworkState.h" />
     <ClInclude Include="resource.h" />

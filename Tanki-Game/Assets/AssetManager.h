@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include <vector>
 #include <string>
 #include <sdl.h>
 #include <SDL_image.h>
@@ -10,13 +12,13 @@
 #include "../Map/Map.h"
 
 using std::string;
-using std::vector;
+using nlohmann::json;
 
 class AssetManager
 {
 private:
 	// Variables
-	vector<AssetContainer*> m_containers;
+	std::vector<AssetContainer*> m_containers;
 	SDL_Renderer* m_renderer;
 
 	// Default assets
@@ -49,4 +51,5 @@ public:
 	Mix_Music* GetMusic(const string& name) const;
 	Mix_Chunk* GetSound(const string& name) const;
 	Map* GetMap(const string& name) const;
+	json GetJson(const string& name) const;
 };

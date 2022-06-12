@@ -79,9 +79,53 @@ Mix_Chunk* AssetManager::GetSound(const string& name) const
 
 Map* AssetManager::GetMap(const string& name) const
 {
-    // TODO
+    SDL_RWops* map_file = findAsset("Maps/" + name + "/" + name + ".tmj");
+    
+    if (map_file == nullptr)
+        return nullptr;
+
+    PLOGD << "Map " << name << " exists!";
+    
+    SDL_RWclose(map_file);
     return nullptr;
 }
+
+json AssetManager::GetJson(const string& name) const
+{
+    SDL_RWops* j_file = findAsset(name);
+    
+    // Creating json object
+    json j;
+    j = json::parse("{}");
+
+    // File doesn't exists
+    if (j_file == nullptr) {
+        PLOG_WARNING << "Json file '" + name + "' doesn't exists";
+        return j;
+    }
+        
+    // Counting size
+    size_t j_size = SDL_RWsize(j_file);
+
+    // Reading into vector
+    std::vector<char> j_string(j_size);
+    SDL_RWseek(j_file,  0, RW_SEEK_SET);
+    SDL_RWread(j_file, j_string.data(), 1, j_size);
+
+    // Creating json
+    try {
+        j = json::parse(j_string);
+    } catch (json::parse_error e) {
+        PLOG_ERROR << "Cant parse json file '" + name + "': " + e.what();
+    }
+
+    // Cleaning memory
+    SDL_RWclose(j_file);
+    
+    return j;
+}
+
+
 
 
 // Default generators

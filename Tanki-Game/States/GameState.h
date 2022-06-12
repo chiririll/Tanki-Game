@@ -5,29 +5,29 @@
 
 #include "../Game.h"
 #include "State.h"
-#include "GameState.h"
+#include "MenuState.h"
 
-using nlohmann::json;
-
-class MenuState : public State
+class GameState : public State
 {
 private:
-	// Settings
-	json m_data;
-
-	// Multimedia
 	SDL_Texture* m_bg_texture;
-	Mix_Music* m_music;
 
-	// FIXME
-	int m_counter = 0;
+	SDL_Texture* m_artem;
+	SDL_Texture* m_vital;
+	SDL_Rect m_artem_hitbox;
+	SDL_Rect m_vital_hitbox;
+
+	Mix_Music* m_music;
+	// SDL_Rect m_bg_rect;
+	double count = 0;
+	double pos = 0;
 
 protected:
 
 public:
 	// Constructors and destructors
-	MenuState();
-	virtual ~MenuState();
+	GameState();
+	virtual ~GameState();
 
 	// Start
 	void Start() override;
