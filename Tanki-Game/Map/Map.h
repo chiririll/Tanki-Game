@@ -5,7 +5,7 @@
 #include <SDL.h>
 
 #include <nlohmann/json.hpp>
-// #include <tileson_min.hpp>
+//#include <tileson_min.hpp>
 
 using std::string;
 using nlohmann::json;
@@ -13,7 +13,7 @@ using nlohmann::json;
 class Map
 {
 private:
-	// tson::Map m_map;
+	
 
 public:
 	Map();

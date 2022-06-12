@@ -21,16 +21,12 @@ private:
 
 	// Default assets
 	SDL_Texture* m_missing_texture;
-	Mix_Music* m_missing_music;
-	Mix_Chunk* m_missing_sound;
 
 	// Methods
 	SDL_RWops* findAsset(const string& name) const;
 
 	// Default generators
-	SDL_Texture* generateMissingTexture() const;
-	Mix_Music* generateMissingMusic() const;
-	Mix_Chunk* generateMissingSound() const;
+	SDL_Texture* generateMissingTexture(uint16_t w, uint16_t h, uint16_t square) const;
 
 	// Disabling copying
 	AssetManager(const AssetManager&) = delete;
