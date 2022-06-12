@@ -15,6 +15,7 @@ namespace cfg
 		int window_w() const;
 		int window_h() const;
 		Uint32 window_flags() const;
+		Uint32 render_flags() const;
 
 		int fps_max() const;
 	};

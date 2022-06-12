@@ -41,6 +41,12 @@
     <Filter Include="Source Files\Configs">
       <UniqueIdentifier>{55a3ab28-ac49-4b1d-b760-c3c03b2a1564}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{4565a6a3-37fe-4215-a441-da99fdc31e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{b9c14b55-a21f-4cb4-b168-0c8d083c2f5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,25 +58,22 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkState.cpp">
+    <ClCompile Include="States\NetworkState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
+    <ClCompile Include="States\State.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
+    <ClCompile Include="States\MenuState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="HUD.cpp">
+    <ClCompile Include="HUD\HUD.cpp">
       <Filter>Source Files\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="Widget.cpp">
+    <ClCompile Include="HUD\Widget.cpp">
       <Filter>Source Files\HUD</Filter>
     </ClCompile>
     <ClCompile Include="Assets\AssetManager.cpp">
-      <Filter>Source Files\AssetManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\Asset.cpp">
       <Filter>Source Files\AssetManager</Filter>
     </ClCompile>
     <ClCompile Include="Configs\Config.cpp">
@@ -91,8 +94,8 @@
     <ClCompile Include="Assets\FolderContainer.cpp">
       <Filter>Source Files\AssetManager</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Map\Map.cpp">
+      <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,25 +108,22 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkState.h">
+    <ClInclude Include="States\NetworkState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
+    <ClInclude Include="States\State.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
+    <ClInclude Include="States\MenuState.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="HUD.h">
+    <ClInclude Include="HUD\HUD.h">
       <Filter>Header Files\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="Widget.h">
+    <ClInclude Include="HUD\Widget.h">
       <Filter>Header Files\HUD</Filter>
     </ClInclude>
     <ClInclude Include="Assets\AssetManager.h">
-      <Filter>Header Files\AssetManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\Asset.h">
       <Filter>Header Files\AssetManager</Filter>
     </ClInclude>
     <ClInclude Include="Configs\Gfx.h">
@@ -144,8 +144,11 @@
     <ClInclude Include="Assets\FolderContainer.h">
       <Filter>Header Files\AssetManager</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\Map.h">
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,5 +158,10 @@
     <None Include="..\README.md">
       <Filter>docs</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tanki-Game.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

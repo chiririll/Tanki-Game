@@ -7,7 +7,7 @@
 
 #include "../Tanki-Game.hh"
 #include "AssetContainer.h"
-#include "../Map.h"
+#include "../Map/Map.h"
 
 using std::string;
 using std::vector;
@@ -25,7 +25,7 @@ private:
 	Mix_Chunk* m_missing_sound;
 
 	// Methods
-	Asset* findAsset(const string& name) const;
+	SDL_RWops* findAsset(const string& name) const;
 
 	// Default generators
 	SDL_Texture* generateMissingTexture() const;

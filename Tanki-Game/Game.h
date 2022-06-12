@@ -18,13 +18,14 @@ namespace fs = std::filesystem;
 #include "Tanki-Game.hh"
 
 // States
-#include "State.h"
+#include "States/State.h"
 
 // Configs
 #include "Configs/Gfx.h"
 
 // Assets
 #include "Assets/AssetManager.h"
+#include "Assets/FolderContainer.h"
 
 
 #define GAME Game::GetInstance()

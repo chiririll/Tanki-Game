@@ -86,7 +86,7 @@ void Game::initMainWindow()
 
 void Game::initMainRenderer()
 {
-	m_main_renderer = SDL_CreateRenderer(m_main_window, -1, SDL_RENDERER_ACCELERATED);
+	m_main_renderer = SDL_CreateRenderer(m_main_window, -1, SDL_RENDERER_ACCELERATED | m_gfx_conf.render_flags());
 	if (not m_main_renderer) {
 		PLOG_ERROR << "Can't initialize main renderer: " << SDL_GetError();
 		std::exit(3);
@@ -96,8 +96,8 @@ void Game::initMainRenderer()
 
 void Game::initAssets()
 {
-	// TODO
-	// m_assets.AddContainer();
+	// Adding containers
+	m_assets.AddContainer(new FolderContainer());
 }
 
 void Game::initAudio()
@@ -131,6 +131,7 @@ void Game::update()
 
 void Game::render()
 {
+	// TODO: calc deltatime and limit fps
 	SDL_RenderClear(m_main_renderer);
 	
 	// Render some stuff
@@ -154,6 +155,9 @@ void Game::updateEvents()
 		switch (event.type)
 		{
 		case SDL_QUIT:
+			this->Stop();
+			break;
+		case SDL_KEYDOWN:
 			this->Stop();
 			break;
 		}

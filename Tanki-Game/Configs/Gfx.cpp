@@ -9,8 +9,9 @@ cfg::Gfx::Gfx(): Config("gfx")
 			{"width", 720},
 			{"height", 576}
 		});*/
-	SetDefault("/resolution/width", 720);
-	SetDefault("/resolution/height", 480);
+	SetDefault("/resolution/width", 925);
+	SetDefault("/resolution/height", 530);
+	SetDefault("/vsync", true);
 
 	SetDefault("/window_mode", "windowed");
 	SetDefault("/fps_lock", 240);
@@ -36,6 +37,17 @@ Uint32 cfg::Gfx::window_flags() const
 	if (mode == "borderless")
 		return SDL_WINDOW_FULLSCREEN_DESKTOP;
 	// windowed
+	return 0;
+}
+
+Uint32 cfg::Gfx::render_flags() const
+{
+	// vsync
+	bool vsync = GetValue<bool>("/vsync");
+
+	if (vsync)
+		return SDL_RENDERER_PRESENTVSYNC;
+	
 	return 0;
 }
 

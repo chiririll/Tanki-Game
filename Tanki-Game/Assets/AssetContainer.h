@@ -2,8 +2,7 @@
 #include <string>
 
 #include <plog/Log.h>
-
-#include "Asset.h"
+#include <SDL.h>
 
 using std::string;
 
@@ -20,10 +19,10 @@ public:
 	virtual ~AssetContainer() = default;
 	
 	// Status
-	bool isValid();
+	bool fail();
 
 	// Assets operations
-	virtual Asset* GetAsset(const string& name) = 0;
+	virtual SDL_RWops* GetAsset(const string& name) = 0;
 	virtual bool HasAsset(const string& name) = 0;
 };
 

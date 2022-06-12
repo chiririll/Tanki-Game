@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <filesystem>
+#include <fstream>
+
+#include <SDL.h>
 
 #include "../Tanki-Game.hh"
 #include "AssetContainer.h"
@@ -17,12 +20,12 @@ protected:
 
 public:
 	// Con & destr
-	FolderContainer() : FolderContainer(BASE_DIR / "assets/") {};
+	FolderContainer() : FolderContainer(BASE_DIR / "assets") {};
 	FolderContainer(fs::path path);
 	virtual ~FolderContainer() = default;
 	
 	// Assets
-	Asset* GetAsset(const string& name);
+	SDL_RWops* GetAsset(const string& name);
 	bool HasAsset(const string& name);
 };
 

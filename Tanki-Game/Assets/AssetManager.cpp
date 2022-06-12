@@ -27,7 +27,7 @@ void AssetManager::SetRenderer(SDL_Renderer* renderer)
 // Containers
 void AssetManager::AddContainer(AssetContainer* container)
 {
-    if (container != nullptr && container->isValid())
+    if (container != nullptr && !container->fail())
         m_containers.push_back(container);
 }
 
@@ -40,39 +40,44 @@ void AssetManager::ClearContainers()
 
 
 // Assets
-Asset* AssetManager::findAsset(const string& name) const
+SDL_RWops* AssetManager::findAsset(const string& name) const
 {
     for (auto container : m_containers)
         if (container->HasAsset(name))
             return container->GetAsset(name);
+
     return nullptr;
 }
 
 SDL_Texture* AssetManager::GetTexture(const string& name) const
 {
-    // TODO
-    const fs::path bg_path = BASE_DIR / fs::path("assets/Textures/" + name);
-
-    PLOGD << bg_path;
-
-    SDL_Surface* surf = IMG_Load(bg_path.string().c_str());
-    auto texture = SDL_CreateTextureFromSurface(m_renderer, surf);
-    SDL_FreeSurface(surf);
-    return texture;
+    SDL_RWops* texture_data = findAsset("textures/" + name);
+    if (texture_data == nullptr)
+        // TODO: load default texture
+        return nullptr;
+    
+    // True means that function will clean RWops
+    return IMG_LoadTexture_RW(m_renderer, texture_data, true);
 }
 
 Mix_Music* AssetManager::GetMusic(const string& name) const
 {
-    // TODO
-    const fs::path mus_path = BASE_DIR / fs::path("assets/Music/" + name);
-    PLOGD << mus_path;
-    return Mix_LoadMUS(mus_path.string().c_str());
+    SDL_RWops* music_data = findAsset("Music/" + name);
+    
+    if (music_data == nullptr)
+        return nullptr;
+    
+    return Mix_LoadMUS_RW(music_data, true);
 }
 
 Mix_Chunk* AssetManager::GetSound(const string& name) const
 {
-    // TODO
-    return nullptr;
+    SDL_RWops* sound_data = findAsset("Sounds/" + name);
+
+    if (sound_data == nullptr)
+        return nullptr;
+
+    return Mix_LoadWAV_RW(sound_data, true);
 }
 
 Map* AssetManager::GetMap(const string& name) const

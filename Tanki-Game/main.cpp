@@ -2,7 +2,7 @@
 
 #include "Tanki-Game.hh"
 #include "Game.h"
-#include "MenuState.h"
+#include "States/MenuState.h"
 
 
 void initLogger()
