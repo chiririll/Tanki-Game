@@ -12,6 +12,9 @@ public:
 	NetworkState() = default;
 	virtual ~NetworkState() = default;
 
+	// Start
+	bool Start() override;
+
 	// Updaters
 	void Update() override;
 	void FixedUpdate() override;

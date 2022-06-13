@@ -23,8 +23,15 @@ private:
 	State& operator=(const State&) = delete;
 
 protected:
+	// Variables
+	json m_settings;
+	string m_error;
+
 	// Asset Manager
 	const AssetManager* m_assets;
+
+	// Settings
+	void loadSettings(const string& state_name);
 
 	// Game objects
 	void addGameObject(GameObject* object, uint16_t id);
@@ -38,11 +45,14 @@ public:
 	State(const AssetManager* asset_manager);
 	virtual ~State();
 
+	// Errors
+	string GetError() { return m_error; }
+
 	// Variables
 	void AddAssetManager(const AssetManager* manager);
 
 	// Start
-	virtual void Start() = 0;
+	virtual bool Start() = 0;
 
 	// Updaters
 	virtual void Update() = 0;

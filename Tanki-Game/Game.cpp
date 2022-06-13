@@ -37,6 +37,7 @@ Game::~Game()
 // Game Loop 
 void Game::Run()
 {
+	// TODO: Handle runtime errors
 	while (m_main_window != nullptr) {
 		updateEvents();
 		update();
@@ -172,7 +173,7 @@ void Game::updateDt()
 }
 
 // State
-void Game::PushState(State* state)
+void Game::PushState(State* state, bool is_menu)
 {
 	if (state == nullptr)
 		return;
@@ -183,5 +184,24 @@ void Game::PushState(State* state)
 	m_state = state;
 	m_state->AddAssetManager(&m_assets);
 
-	m_state->Start();
+	// Trying to start state
+	bool succeed = false;
+	string error("Unknown error");
+	try {
+		succeed = m_state->Start();
+		error = state->GetError();
+	}
+	catch (json::exception e) { error = e.what(); }
+	catch (std::exception e) { error = e.what(); }
+	catch (...) {}
+
+	if (!succeed) {
+		// Showing error
+		PLOG_ERROR << "Failed to load state: " << error;
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Failed to load state", error.c_str(), m_main_window);
+		
+		// Pushing menu state or exiting game
+		if (!is_menu) PushState(new MenuState(), true);
+		else Stop();
+	}
 }

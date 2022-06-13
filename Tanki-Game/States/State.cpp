@@ -1,7 +1,7 @@
 #include "State.h"
 
 // Constructors and destructors
-State::State(const AssetManager* asset_manager) : m_assets(asset_manager)
+State::State(const AssetManager* asset_manager) : m_assets(asset_manager), m_error("")
 {
 
 }
@@ -14,6 +14,11 @@ State::~State()
 void State::AddAssetManager(const AssetManager* manager)
 {
 	m_assets = manager;
+}
+
+void State::loadSettings(const string& state_name)
+{
+	m_settings = m_assets->GetJson("GameModes/" + state_name + "/" + state_name + ".json");
 }
 
 // Game Objects

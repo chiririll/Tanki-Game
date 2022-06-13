@@ -3,22 +3,17 @@
 
 // Con & destr
 AssetManager::AssetManager() :
-    m_renderer(nullptr),
-    m_missing_texture(nullptr)
+    m_renderer(nullptr)
 {}
 
 AssetManager::~AssetManager() 
 {
-    SDL_DestroyTexture(m_missing_texture);
-    
     ClearContainers();
 }
 
 void AssetManager::SetRenderer(SDL_Renderer* renderer)
 {
     m_renderer = renderer;
-
-    m_missing_texture = generateMissingTexture(256, 256, 16);
 }
 
 
@@ -37,6 +32,26 @@ void AssetManager::ClearContainers()
 }
 
 
+// Utils
+void AssetManager::RWops2string(SDL_RWops* file, string& str, bool freesrc) const
+{
+    // Counting size
+    size_t size = SDL_RWsize(file);
+
+    // Creating string
+    str.clear();
+    str.resize(size);
+    
+    // Reading file
+    SDL_RWseek(file, 0, RW_SEEK_SET);
+    SDL_RWread(file, str.data(), 1, size);
+
+    // Cleaning memory
+    if (freesrc)
+        SDL_RWclose(file);
+}
+
+
 // Assets
 SDL_RWops* AssetManager::findAsset(const string& name) const
 {
@@ -51,7 +66,7 @@ SDL_Texture* AssetManager::GetTexture(const string& name) const
 {
     SDL_RWops* texture_data = findAsset("textures/" + name);
     if (texture_data == nullptr)
-        return m_missing_texture;
+        return generateMissingTexture(256, 256, 16);
     
     // True means that function will clean RWops
     return IMG_LoadTexture_RW(m_renderer, texture_data, true);
@@ -77,55 +92,74 @@ Mix_Chunk* AssetManager::GetSound(const string& name) const
     return Mix_LoadWAV_RW(sound_data, true);
 }
 
+bool AssetManager::GetTileset(tmx::Tileset& tileset, tmx::Map* map) const
+{
+    SDL_RWops* tsx_file = findAsset(tileset.getSource());
+
+    if (tsx_file == nullptr)
+        return false;
+
+    string tsx_string;
+    RWops2string(tsx_file, tsx_string, true);
+
+    return tileset.parse_string(tsx_string, map);
+}
+
 Map* AssetManager::GetMap(const string& name) const
 {
-    SDL_RWops* map_file = findAsset("Maps/" + name + "/" + name + ".tmj");
-    
-    if (map_file == nullptr)
-        return nullptr;
+    SDL_RWops* map_file = findAsset("Maps/" + name + "/" + name + ".tmx");
 
-    PLOGD << "Map " << name << " exists!";
+    if (map_file == nullptr) {
+        PLOG_WARNING << "Can't load map '" + name + "': file doesn't exists";
+        return nullptr;
+    }
+        
+
+    // Loading string
+    string map_str;
+    RWops2string(map_file, map_str, true);
     
-    SDL_RWclose(map_file);
-    return nullptr;
+    // Loading map data from string
+    tmx::Map map_data;
+    if (!map_data.loadFromString(map_str, "")) {
+        PLOG_WARNING << "Can't load map '" + name + "': parsing error";
+        return nullptr;
+    }
+
+    // Loading tilemaps
+    for (auto& tileset : map_data.getTilesets_m()) {
+        GetTileset(tileset, &map_data);
+    }
+
+    // Creting map
+    Map* map = new Map(std::move(map_data));
+
+    return map;
 }
 
 json AssetManager::GetJson(const string& name) const
 {
     SDL_RWops* j_file = findAsset(name);
     
-    // Creating json object
-    json j;
-    j = json::parse("{}");
-
     // File doesn't exists
     if (j_file == nullptr) {
         PLOG_WARNING << "Json file '" + name + "' doesn't exists";
-        return j;
+        return json::parse("{}");
     }
-        
-    // Counting size
-    size_t j_size = SDL_RWsize(j_file);
-
-    // Reading into vector
-    std::vector<char> j_string(j_size);
-    SDL_RWseek(j_file,  0, RW_SEEK_SET);
-    SDL_RWread(j_file, j_string.data(), 1, j_size);
+    
+    // Reading into string
+    string j_string;
+    RWops2string(j_file, j_string, true);
 
     // Creating json
     try {
-        j = json::parse(j_string);
+        return json::parse(j_string);
     } catch (json::parse_error e) {
         PLOG_ERROR << "Cant parse json file '" + name + "': " + e.what();
     }
 
-    // Cleaning memory
-    SDL_RWclose(j_file);
-    
-    return j;
+    return json::parse("{}");
 }
-
-
 
 
 // Default generators

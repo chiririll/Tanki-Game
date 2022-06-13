@@ -17,15 +17,16 @@ namespace fs = std::filesystem;
 // Properties
 #include "Tanki-Game.hh"
 
-// States
-#include "States/State.h"
-
 // Configs
 #include "Configs/Gfx.h"
 
 // Assets
 #include "Assets/AssetManager.h"
 #include "Assets/FolderContainer.h"
+
+// States
+#include "States/State.h"
+#include "States/MenuState.h"
 
 
 #define GAME Game::GetInstance()
@@ -78,7 +79,7 @@ public:
     void Stop();
 
     // States
-    void PushState(State* = nullptr);
+    void PushState(State* = nullptr, bool = false);
 
     // Singleton
     static Game* GetInstance();

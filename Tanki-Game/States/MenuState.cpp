@@ -13,26 +13,20 @@ MenuState::~MenuState() {
 
 
 // Start
-void MenuState::Start()
-{
-	// using _jp = _json_pointer;
+bool MenuState::Start()
+{	
+	// Loading state settings
+	loadSettings("MainMenu");
 
-	m_data = m_assets->GetJson("GameModes/MainMenu/MainMenu.json");
-	int loops = -1;
-	
-	try {
-		// Loading background 
-		m_bg_texture = m_assets->GetTexture(m_data.value("/background_image"_json_pointer, ""));
+	// Loading background 
+	m_bg_texture = m_assets->GetTexture(m_settings.value("/background_image"_json_pointer, ""));
 
-		// Loading music
-		m_music = m_assets->GetMusic(m_data.value("/music/file"_json_pointer, ""));
-		loops = m_data.value("/music/loops"_json_pointer, -1);
-	} catch (json::exception e) {
-		PLOG_ERROR << "Cannot load menu state settings: " << e.what();
-		return;
-	}
+	// Loading music
+	m_music = m_assets->GetMusic(m_settings.value("/music/file"_json_pointer, ""));
+	int loops = m_settings.value("/music/loops"_json_pointer, -1);
 
 	Mix_PlayMusic(m_music, loops);
+	return true;
 }
 
 

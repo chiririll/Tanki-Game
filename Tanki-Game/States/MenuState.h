@@ -12,9 +12,6 @@ using nlohmann::json;
 class MenuState : public State
 {
 private:
-	// Settings
-	json m_data;
-
 	// Multimedia
 	SDL_Texture* m_bg_texture;
 	Mix_Music* m_music;
@@ -30,7 +27,7 @@ public:
 	virtual ~MenuState();
 
 	// Start
-	void Start() override;
+	bool Start() override;
 
 	// Updaters
 	void Update() override;

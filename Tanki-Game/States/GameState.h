@@ -4,23 +4,20 @@
 #include <SDL_mixer.h>
 
 #include "../Game.h"
+#include "../Map/Map.h"
 #include "State.h"
 #include "MenuState.h"
 
 class GameState : public State
 {
 private:
-	SDL_Texture* m_bg_texture;
+	Map *m_map;
 
-	SDL_Texture* m_artem;
-	SDL_Texture* m_vital;
-	SDL_Rect m_artem_hitbox;
-	SDL_Rect m_vital_hitbox;
-
+	// Multimedia
 	Mix_Music* m_music;
-	// SDL_Rect m_bg_rect;
-	double count = 0;
-	double pos = 0;
+	
+	// FIXME
+	int count = 0;
 
 protected:
 
@@ -30,7 +27,7 @@ public:
 	virtual ~GameState();
 
 	// Start
-	void Start() override;
+	bool Start() override;
 
 	// Updaters
 	void Update() override;

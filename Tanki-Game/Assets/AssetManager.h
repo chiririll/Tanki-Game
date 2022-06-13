@@ -1,11 +1,13 @@
 #pragma once
-#include <fstream>
 #include <vector>
 #include <string>
+
 #include <sdl.h>
 #include <SDL_image.h>
 #include <sdl_mixer.h>
 #include <nlohmann/json.hpp>
+#include <tmxlite/Map.hpp>
+#include <tmxlite/Tileset.hpp>
 
 #include "../Tanki-Game.hh"
 #include "AssetContainer.h"
@@ -21,11 +23,9 @@ private:
 	std::vector<AssetContainer*> m_containers;
 	SDL_Renderer* m_renderer;
 
-	// Default assets
-	SDL_Texture* m_missing_texture;
-
 	// Methods
 	SDL_RWops* findAsset(const string& name) const;
+	void RWops2string(SDL_RWops* file, string& str, bool freesrc = false) const;
 
 	// Default generators
 	SDL_Texture* generateMissingTexture(uint16_t w, uint16_t h, uint16_t square) const;
@@ -50,6 +50,7 @@ public:
 	SDL_Texture* GetTexture(const string& name) const;
 	Mix_Music* GetMusic(const string& name) const;
 	Mix_Chunk* GetSound(const string& name) const;
+	bool GetTileset(tmx::Tileset& tileset, tmx::Map* map) const;
 	Map* GetMap(const string& name) const;
 	json GetJson(const string& name) const;
 };
