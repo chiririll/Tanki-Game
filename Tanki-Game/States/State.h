@@ -55,7 +55,7 @@ public:
 	virtual bool Start() = 0;
 
 	// Updaters
-	virtual void Update() = 0;
+	virtual void Update(const double& delta_time) = 0;
 	virtual void FixedUpdate() = 0;
 	virtual void Render() = 0;
 	virtual void DrawUI() = 0;

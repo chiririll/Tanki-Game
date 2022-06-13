@@ -49,10 +49,6 @@ private:
     // Assets
     AssetManager m_assets;
 
-    // Delta time
-    Uint64 dt_last;
-    double deltaTime;
-
     // Initialization 
     void initMainWindow();
     void initMainRenderer();
@@ -62,12 +58,12 @@ private:
 
     // Updaters 
     void updateEvents();
-    void updateDt();
-    void update();
+    void update(Uint64& prev_update, Uint64& next_update, double& delta_time);
     void render();
     void drawUI();
 
 protected:
+    // Singleton
     Game();
     Game(Game&) = delete;
     void operator=(const Game&) = delete;
@@ -85,7 +81,7 @@ public:
     static Game* GetInstance();
 
     // Getters
-    double get_dt() { return deltaTime; }
+    // double get_dt() { return deltaTime; }
     SDL_Renderer* GetRenderer() { return m_main_renderer; }
     const AssetManager* GetAssetManager() { return &m_assets; }
 };

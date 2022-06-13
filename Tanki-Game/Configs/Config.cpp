@@ -63,8 +63,9 @@ void cfg::Config::SetValue(const json::json_pointer& key, const json& value)
 void cfg::Config::SetDefault(const string& key_str, const json& value)
 {
 	json::json_pointer key(key_str);
+	
 	if (m_config.contains(key) && m_config[key].type_name() == value.type_name())
 		return;
-
+	
 	SetValue(key, value);
 }

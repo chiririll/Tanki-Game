@@ -13,12 +13,12 @@ Game* Game::GetInstance()
 
 
 // Constructors & destructors
-Game::Game()
+Game::Game(): m_gfx_conf()
 {
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO) != 0) {
 		PLOG_ERROR << "Can't initialize SDL: " << SDL_GetError();
-		std::exit(1);
+		exit(1);
 	}
 
 	initFolders();
@@ -37,14 +37,21 @@ Game::~Game()
 // Game Loop 
 void Game::Run()
 {
+	// Update
+	Uint64 prev_update = SDL_GetPerformanceCounter();
+	Uint64 next_update = SDL_GetPerformanceCounter();
+	double delta_time = 0.16f;
+
+	// TODO
+
 	// TODO: Handle runtime errors
 	while (m_main_window != nullptr) {
 		updateEvents();
-		update();
-		updateDt();
+		update(prev_update, next_update, delta_time);
 	}
 	delete this;
 }
+
 
 // Stopper
 void Game::Stop()
@@ -118,16 +125,25 @@ void Game::initFolders()
 }
 
 // Update
-void Game::update()
+void Game::update(Uint64& prev_update, Uint64& next_update, double& delta_time)
 {
+	// FIXME: Overflow?
+	if (SDL_GetPerformanceCounter() < next_update) {
+		return;
+	}
+
+	PLOGD << "FPS: " << 1 / delta_time;
+
+	// Updating states
+	m_state->Update(delta_time);
+
+	next_update += m_gfx_conf.frame_time();
 	
-	// TODO: Updating states
-
-	// TODO: Fixed update
-
-	m_state->Update();
+	// Rendering changes
 	render();
-	// PLOG_INFO << "FPS: " << 1 / deltaTime;
+
+	delta_time = (double)(SDL_GetPerformanceCounter() - prev_update) / (double)SDL_GetPerformanceFrequency();
+	prev_update = SDL_GetPerformanceCounter();
 }
 
 void Game::render()
@@ -159,17 +175,10 @@ void Game::updateEvents()
 			this->Stop();
 			break;
 		case SDL_KEYDOWN:
-			this->Stop();
+			//this->Stop();
 			break;
 		}
 	}
-}
-
-void Game::updateDt()
-{	
-	Uint64 now = SDL_GetPerformanceCounter();
-	deltaTime = (now - dt_last) / (double)SDL_GetPerformanceFrequency();
-	dt_last = now;
 }
 
 // State

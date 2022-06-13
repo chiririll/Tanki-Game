@@ -17,7 +17,7 @@ private:
 	Mix_Music* m_music;
 	
 	// FIXME
-	int count = 0;
+	double count = 0;
 
 protected:
 
@@ -30,7 +30,7 @@ public:
 	bool Start() override;
 
 	// Updaters
-	void Update() override;
+	void Update(const double& delta_time) override;
 	void FixedUpdate() override;
 	void Render() override;
 	void DrawUI() override;

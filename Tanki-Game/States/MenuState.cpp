@@ -31,9 +31,10 @@ bool MenuState::Start()
 
 
 // Updaters
-void MenuState::Update()
+void MenuState::Update(const double& dt)
 {
-	if (++m_counter > 20000)
+	m_counter += dt;
+	if (m_counter > 5)
 		GAME->PushState(new GameState());
 }
 

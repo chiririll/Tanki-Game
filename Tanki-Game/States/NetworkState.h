@@ -16,7 +16,7 @@ public:
 	bool Start() override;
 
 	// Updaters
-	void Update() override;
+	void Update(const double& delta_time) override;
 	void FixedUpdate() override;
 	void Render() override;
 	void DrawUI() override;

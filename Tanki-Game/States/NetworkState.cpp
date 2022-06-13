@@ -7,7 +7,7 @@ bool NetworkState::Start()
 }
 
 // Updaters
-void NetworkState::Update()
+void NetworkState::Update(const double& dt)
 {
 
 }

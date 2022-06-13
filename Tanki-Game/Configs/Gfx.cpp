@@ -3,18 +3,18 @@
 
 cfg::Gfx::Gfx(): Config("gfx")
 {
-	// Initialising defaults
-	/*SetDefault("/resolution",
-		{
-			{"width", 720},
-			{"height", 576}
-		});*/
+	SetDefault("/resolution", json::parse("{}"));
 	SetDefault("/resolution/width", 925);
 	SetDefault("/resolution/height", 530);
 	SetDefault("/vsync", true);
 
 	SetDefault("/window_mode", "windowed");
 	SetDefault("/fps_lock", 240);
+
+	int fps = std::clamp(GetValue<int>("/fps_lock"), 16, 512);
+	SetValue("/fps_lock", fps);
+
+	m_frame_time = SDL_GetPerformanceFrequency() / fps;
 }
 
 // Window params
