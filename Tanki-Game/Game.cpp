@@ -13,7 +13,7 @@ Game* Game::GetInstance()
 
 
 // Constructors & destructors
-Game::Game(): m_gfx_conf()
+Game::Game(): m_gfx_conf(), m_sound_conf()
 {
 	// Initializing SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO) != 0) {
@@ -132,7 +132,7 @@ void Game::update(Uint64& prev_update, Uint64& next_update, double& delta_time)
 		return;
 	}
 
-	PLOGD << "FPS: " << 1 / delta_time;
+	// PLOGD << "FPS: " << 1 / delta_time;
 
 	// Updating states
 	m_state->Update(delta_time);
@@ -177,7 +177,26 @@ void Game::updateEvents()
 		case SDL_KEYDOWN:
 			//this->Stop();
 			break;
+		case SDL_WINDOWEVENT:
+			handleWindowEvent(event.window.event);
+			break;
 		}
+	}
+}
+
+void Game::handleWindowEvent(Uint8 window_event)
+{
+	switch (window_event) {
+	case SDL_WINDOWEVENT_FOCUS_LOST:
+		if (m_sound_conf.MuteMusicFocus())
+			Mix_VolumeMusic(0);
+		if (m_sound_conf.MuteSoundFocus())
+			Mix_Volume(-1, 0);
+		break;
+	case SDL_WINDOWEVENT_FOCUS_GAINED:
+		Mix_VolumeMusic(m_sound_conf.GetMusicVolume());
+		Mix_Volume(-1, m_sound_conf.GetSoundVolume());
+		break;
 	}
 }
 

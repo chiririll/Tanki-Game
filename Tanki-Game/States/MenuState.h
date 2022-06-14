@@ -7,6 +7,8 @@
 #include "State.h"
 #include "GameState.h"
 
+#include <cmath>
+
 using nlohmann::json;
 
 class MenuState : public State

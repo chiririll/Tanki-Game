@@ -9,6 +9,8 @@ namespace cfg
 	class Gfx : public Config
 	{
 	private:
+		// TODO: Refactor
+
 		Uint64 m_frame_time;
 
 	public:

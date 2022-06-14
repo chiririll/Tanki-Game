@@ -47,15 +47,18 @@
     <Filter Include="Header Files\Map">
       <UniqueIdentifier>{b9c14b55-a21f-4cb4-b168-0c8d083c2f5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{a1b90a19-7ea2-4b29-9bb6-45707e132731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{d56c5427-d282-49e5-8a78-b784533801aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="States\NetworkState.cpp">
@@ -100,15 +103,18 @@
     <ClCompile Include="States\GameState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="States\SplashState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tanki-Game.hh">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="States\NetworkState.h">
@@ -155,6 +161,15 @@
     </ClInclude>
     <ClInclude Include="States\GameState.h">
       <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="States\SplashState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Configs\ConfigValues.hpp">
+      <Filter>Header Files\Configs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,7 @@ namespace fs = std::filesystem;
 
 // Configs
 #include "Configs/Gfx.h"
+#include "Configs/Sound.h"
 
 // Assets
 #include "Assets/AssetManager.h"
@@ -45,6 +46,7 @@ private:
 
     // Configs
     cfg::Gfx m_gfx_conf;
+    cfg::Sound m_sound_conf;
 
     // Assets
     AssetManager m_assets;
@@ -56,8 +58,11 @@ private:
     void initAudio();
     void initFolders();
 
-    // Updaters 
+    // Events
     void updateEvents();
+    void handleWindowEvent(Uint8 window_event);
+
+    // Updaters 
     void update(Uint64& prev_update, Uint64& next_update, double& delta_time);
     void render();
     void drawUI();

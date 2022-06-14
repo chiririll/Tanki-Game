@@ -22,7 +22,7 @@ void State::loadSettings(const string& state_name)
 }
 
 // Game Objects
-void State::addGameObject(GameObject* object, uint16_t id = 0)
+void State::addGameObject(GameObject* object, Uint32 id = 0)
 {
 	// If vector too short
 	if (m_game_objects.size() <= id) {
@@ -38,9 +38,9 @@ void State::addGameObject(GameObject* object, uint16_t id = 0)
 	m_game_objects[id] = object;
 }
 
-uint16_t State::addGameObject(GameObject* object)
+Uint32 State::addGameObject(GameObject* object)
 {
-	for (uint16_t i = m_start_search; i < m_game_objects.size(); i++)
+	for (Uint32 i = m_start_search; i < m_game_objects.size(); i++)
 		if (m_game_objects[i] == nullptr) {
 			m_game_objects[i] = object;
 			m_start_search = i + 1;
@@ -52,14 +52,14 @@ uint16_t State::addGameObject(GameObject* object)
 	return m_game_objects.size() - 1;
 }
 
-GameObject* State::getGameObject(uint16_t id)
+GameObject* State::getGameObject(Uint32 id)
 {
 	if (m_game_objects.size() > id)
 		return m_game_objects[id];
 	return nullptr;
 }
 
-void State::deleteGameObject(uint16_t id)
+void State::deleteGameObject(Uint32 id)
 {
 	if (m_game_objects.size() > id && m_game_objects[id]) {
 		delete m_game_objects[id];

@@ -2,7 +2,7 @@
 
 #include "Tanki-Game.hh"
 #include "Game.h"
-#include "States/MenuState.h"
+#include "States/SplashState.h"
 
 
 void initLogger()
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 	initLogger();
 
 	Game* game = Game::GetInstance();
-	game->PushState(new MenuState());
+	game->PushState(new SplashState());
 	game->Run();
 
 	return 0;

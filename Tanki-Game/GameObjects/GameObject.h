@@ -6,8 +6,6 @@ class GameObject
 private:
 	unsigned short m_id;
 
-	friend class NetworkState;
-
 protected:
 
 

@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 
-#include "../GameObject.h"
+#include "../GameObjects/GameObject.h"
 #include "../Assets/AssetManager.h"
 #include "../Map/Map.h"
 #include "../HUD/HUD.h"
@@ -13,7 +13,7 @@ class State
 {
 private:
 	std::vector<GameObject*> m_game_objects;
-	uint16_t m_start_search = 0;
+	Uint32 m_start_search = 0;
 	
 	// Map m_map;
 	HUD m_hud;
@@ -34,10 +34,10 @@ protected:
 	void loadSettings(const string& state_name);
 
 	// Game objects
-	void addGameObject(GameObject* object, uint16_t id);
-	uint16_t addGameObject(GameObject* object);
-	GameObject* getGameObject(uint16_t id);
-	void deleteGameObject(uint16_t id);
+	void addGameObject(GameObject* object, Uint32 id);
+	Uint32 addGameObject(GameObject* object);
+	GameObject* getGameObject(Uint32 id);
+	void deleteGameObject(Uint32 id);
 
 public:
 	// Constructors and destructors

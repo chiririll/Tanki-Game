@@ -6,7 +6,7 @@ cfg::Gfx::Gfx(): Config("gfx")
 	SetDefault("/resolution", json::parse("{}"));
 	SetDefault("/resolution/width", 925);
 	SetDefault("/resolution/height", 530);
-	SetDefault("/vsync", true);
+	SetDefault("/vsync", false);
 
 	SetDefault("/window_mode", "windowed");
 	SetDefault("/fps_lock", 240);
