@@ -56,7 +56,7 @@ void cfg::Config::SetValue(const string& key_str, const json& value)
 
 void cfg::Config::SetValue(const json::json_pointer& key, const json& value)
 {
-	PLOG_DEBUG << "Adding key '" + key.to_string() + "' to config '" + m_filename + "'";
+	// PLOG_DEBUG << "Adding key '" + key.to_string() + "' to config '" + m_filename + "'";
 	m_config[key] = value;
 }
 

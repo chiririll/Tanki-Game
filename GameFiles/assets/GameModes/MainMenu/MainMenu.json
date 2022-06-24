@@ -1,7 +1,8 @@
 {
     "background_image": "Backgrounds/menu.png",
-    "music": {
-        "file": "coldcloud.mp3",
-        "loops": -1
-    }
+  "music": {
+    "file": "coldcloud.mp3",
+    "loops": -1
+  },
+  "duration": 5
 }
