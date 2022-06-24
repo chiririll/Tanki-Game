@@ -7,7 +7,7 @@ GameState::~GameState() {
 }
 
 // Constructors & destructors
-GameState::GameState() : State()
+GameState::GameState() : State(), m_bg_texture()
 {
 	PLOG_INFO << "Initialising game state";
 }

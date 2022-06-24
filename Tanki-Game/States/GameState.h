@@ -15,6 +15,7 @@ private:
 
 	// Multimedia
 	Mix_Music* m_music;
+	SDL_Texture* m_bg_texture;
 	
 	// FIXME
 	double count = 0;
