@@ -176,6 +176,7 @@
     <ClCompile Include="Assets\FolderContainer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Sprite.cpp" />
     <ClCompile Include="HUD\HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Map.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="States\NetworkState.cpp" />
     <ClCompile Include="States\State.cpp" />
     <ClCompile Include="HUD\Widget.cpp" />
+    <ClCompile Include="States\TestState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\AssetContainer.h" />
@@ -197,6 +199,7 @@
     <ClInclude Include="Assets\FolderContainer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Sprite.h" />
     <ClInclude Include="HUD\HUD.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="States\GameState.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="States\SplashState.h" />
     <ClInclude Include="States\State.h" />
+    <ClInclude Include="States\TestState.h" />
     <ClInclude Include="Tanki-Game.hh" />
     <ClInclude Include="HUD\Widget.h" />
   </ItemGroup>

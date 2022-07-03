@@ -4,7 +4,7 @@
 // Constructors & destructors
 SplashState::SplashState() : State()
 {
-	PLOG_INFO << "Initialising splash menu state";
+	PLOG_INFO << "Initialising splash state";
 }
 
 SplashState::~SplashState() {

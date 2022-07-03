@@ -6,6 +6,7 @@
 #include "../Game.h"
 #include "State.h"
 #include "GameState.h"
+#include "TestState.h"
 
 #include <cmath>
 

@@ -1,0 +1,45 @@
+{
+    "music": "brainloop.mp3",
+    "background": "Test/murovanka.png",
+    "sprites":[
+        {
+            "texture": "Test/meshkoff.png",
+            "scale": 0.1,
+            "speed": {
+                "vertical": 100,
+                "horizontal": -300,
+                "rotation": 360
+            },
+            "pos": {
+                "x": 0,
+                "y": 10
+            }
+        },
+        {
+            "texture": "Test/artem.png",
+            "scale": 0.05,
+            "speed": {
+                "vertical": -200,
+                "horizontal": 400,
+                "rotation": -640
+            },
+            "pos": {
+                "x":200,
+                "y": 300
+            }
+        },
+        {
+            "texture": "Test/5ka.png",
+            "scale": 0.2,
+            "speed": {
+                "vertical": 0,
+                "horizontal": 500,
+                "rotation": 0
+            },
+            "pos": {
+                "x": 0,
+                "y": 380
+            }
+        }
+    ]
+}

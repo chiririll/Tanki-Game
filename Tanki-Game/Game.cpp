@@ -169,13 +169,11 @@ void Game::updateEvents()
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
+		m_state->HandleEvent(event);
 		switch (event.type)
 		{
 		case SDL_QUIT:
 			this->Stop();
-			break;
-		case SDL_KEYDOWN:
-			//this->Stop();
 			break;
 		case SDL_WINDOWEVENT:
 			handleWindowEvent(event.window.event);
@@ -228,6 +226,8 @@ void Game::PushState(State* state, bool is_menu)
 		PLOG_ERROR << "Failed to load state: " << error;
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Failed to load state", error.c_str(), m_main_window);
 		
+		// FIXME: Memory leak for some reason
+
 		// Pushing menu state or exiting game
 		if (!is_menu) PushState(new MenuState(), true);
 		else Stop();

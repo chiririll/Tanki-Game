@@ -35,7 +35,7 @@ void MenuState::Update(const double& dt)
 {
 	m_counter += dt;
 	if (m_counter > m_settings.value("/duration"_json_pointer, 5))
-		GAME->PushState(new GameState());
+		GAME->PushState(new TestState());
 }
 
 void MenuState::FixedUpdate()

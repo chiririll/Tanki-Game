@@ -87,6 +87,7 @@ public:
 
     // Getters
     // double get_dt() { return deltaTime; }
+    SDL_Window* GetWindow() { return m_main_window; }
     SDL_Renderer* GetRenderer() { return m_main_renderer; }
     const AssetManager* GetAssetManager() { return &m_assets; }
 };
